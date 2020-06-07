@@ -1,0 +1,4 @@
+{
+	"tsserver.npm": "/usr/local/bin/npm",
+  "suggest.detailMaxLength": 400
+}
