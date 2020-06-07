@@ -8,7 +8,7 @@ all: deploy
 
 deploy: $(PROFILE)
 	git add .
-	git commit -am "update my profile"
+	git commit -m "update my profile"
 	git push -u origin master
 
 .ssh/%: ~/.ssh/config
