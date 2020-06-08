@@ -1,10 +1,11 @@
-.PHONY: all deploy symlinks constants
+.PHONY: all symlinks constants
 
-PROFILE = .config/* .config/nvim/* .ssh/* .tmux/* .vim/* $(DOTFILES)
+PROFILE = .config/ .config/nvim/ .ssh/ .tmux/ .vim/ .update
 DOTFILES = .Renviron .dir_colors .fzf.zsh .tmux.conf.local\
 					 .tmux.conf.local.light .vimrc .zlogout .zshrc
 CONFIG = starship.toml
-CONFIG_NVIM = nvim/init.vim 
+CONFIG_NVIM = nvim/init.vim
+SSH = config
 TMUX = .tmux.conf .tmux.conf.local README.md
 VIM = coc-settings.json
 
@@ -16,23 +17,29 @@ deploy: $(PROFILE)
 	git commit -m "update my profile"
 	git push
 
-$(addprefix .config/,$(CONFIG)): $(addprefix ~/.config/,$(CONFIG))
+.config/: $(addprefix ~/.config/,$(CONFIG))
 	cp $? .config/ 
+	touch .config/
 
-$(addprefix .config/,$(CONFIG_NVIM)): $(addprefix ~/.config/,$(CONFIG_NVIM))
+.config/nvim/: $(addprefix ~/.config/,$(CONFIG_NVIM))
 	cp $? .config/nvim/ 
+	touch .config/nvim/
 
-.ssh/*: ~/.ssh/config
+.ssh/: $(addprefix ~/.ssh/,$(SSH))
 	cp $? .ssh/
+	touch .ssh/
 
-.tmux/*: $(addprefix ~/.tmux/,$(TMUX))
+.tmux/: $(addprefix ~/.tmux/,$(TMUX))
 	cp $? .tmux/
+	touch .tmux/
 
-.vim/*: ~/.vim/coc-settings.json
+.vim/: $(addprefix ~/.vim/,$(VIM))
 	cp $? .vim/
+	touch .vim/
 
-$(DOTFILES) &: $(addprefix ~/,$(DOTFILES)) 
+.update: $(addprefix ~/,$(DOTFILES)) 
 	cp $? ./
+	touch .update
 
 symlinks: 
 	ln -fs .tmux/.tmux.conf .tmux.conf
