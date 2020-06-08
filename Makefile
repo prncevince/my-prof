@@ -11,7 +11,7 @@ VIM = coc-settings.json
 all: deploy
 
 deploy: $(PROFILE)
-	touch .deploy
+	touch deploy
 	git add .
 	git commit -m "update my profile"
 	git push
