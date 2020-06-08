@@ -1,7 +1,7 @@
-.PHONY: all deploy
+.PHONY: all deploy symlinks constants
 
 PROFILE = .ssh/% .tmux/% .vim/% $(DOTFILES)
-DOTFILES = .Renviron .condarc .dir_colors .fzf.zsh .tmux.conf.local\
+DOTFILES = .Renviron .dir_colors .fzf.zsh .tmux.conf.local\
 					 .tmux.conf.local.light .vimrc .zlogout .zshrc
 
 all: deploy
@@ -25,3 +25,6 @@ $(DOTFILES) &: $(addprefix ~/,$(DOTFILES))
 
 symlinks: 
 	ln -fs .tmux/.tmux.conf .tmux.conf
+
+constants:
+	cp ~/.condarc ./
