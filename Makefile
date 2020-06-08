@@ -8,9 +8,9 @@ CONFIG_NVIM = nvim/init.vim
 TMUX = .tmux.conf .tmux.conf.local README.md
 VIM = coc-settings.json
 
-all: .deploy
+all: deploy
 
-.deploy: $(PROFILE)
+deploy: $(PROFILE)
 	touch .deploy
 	git add .
 	git commit -m "update my profile"
