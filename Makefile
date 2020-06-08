@@ -1,7 +1,7 @@
 .PHONY: all deploy
 
 PROFILE = .ssh/% .tmux/% .vim/% $(DOTFILES)
-DOTFILES = .Renviron .condarc .dir_colors .fzf.zsh .tmux.conf .tmux.conf.local\
+DOTFILES = .Renviron .condarc .dir_colors .fzf.zsh .tmux.conf.local\
 					 .tmux.conf.local.light .vimrc .zlogout .zshrc
 
 all: deploy
@@ -22,3 +22,6 @@ deploy: $(PROFILE)
 
 $(DOTFILES) &: $(addprefix ~/,$(DOTFILES)) 
 	cp $? ./
+
+symlinks: 
+	ln -fs .tmux/.tmux.conf .tmux.conf
