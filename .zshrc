@@ -10,7 +10,7 @@ export PATH=$PATH:${GOPATH//://bin:}/bin
 # Anaconda - see ZSH_THEME below
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/vincentclemson/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -21,7 +21,7 @@ export ZSH="/Users/vincentclemson/.oh-my-zsh"
 eval "$(starship init zsh)"
 
 # conda script & default Conda prompt
-. /Users/vincentclemson/anaconda3/etc/profile.d/conda.sh
+. $HOME/anaconda3/etc/profile.d/conda.sh
 if [[ "$ZSH_THEME" = "spaceship" ]]; then
   conda config --set changeps1 False
 else 
