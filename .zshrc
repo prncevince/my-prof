@@ -194,8 +194,8 @@ source ~/.private
 ##  ALIASES ##
 alias du="du -sh -- *"
 alias duh="/usr/bin/du -sh -- * .*"
-alias gtl="git log --tags --simplify-by-decoration --pretty=\"format:%ci %d\""
-alias gtld="git log --tags --simplify-by-decoration --pretty=\"format:%cD %d\""
+alias glt="git log --tags --simplify-by-decoration --pretty=\"format:%ci %d\""
+alias gltd="git log --tags --simplify-by-decoration --pretty=\"format:%cD %d\""
 alias gz="git-cz"
 alias ls="gls --color=tty --group-directories-first"
 alias make="gmake"
