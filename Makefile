@@ -1,13 +1,19 @@
 .PHONY: all symlinks constants
 
-PROFILE = .config/ .config/nvim/ .ssh/ .tmux/ .vim/ .update
+PROFILE = .R/rstudio/themes/ .config/ .config/nvim/ .ssh/ .tmux/ .vim/ .update
 DOTFILES = .Renviron .dir_colors .fzf.zsh .tmux.conf.local\
 					 .tmux.conf.local.light .vimrc .zlogout .zshrc
 CONFIG = starship.toml
 CONFIG_NVIM = nvim/init.vim
+RSTUDIO_THEMES = night-owlish.rstheme
 SSH = config
 TMUX = .tmux.conf .tmux.conf.local README.md
 VIM = coc-settings.json
+
+define copy
+	cp $? $@
+	touch $@
+endef
 
 all: .deploy
 
@@ -17,25 +23,23 @@ all: .deploy
 	git commit -m "update my profile"
 	git push
 
+.R/rstudio/themes/: $(addprefix ~/.R/rstudio/themes/,$(RSTUDIO_THEMES))
+	$(copy)
+
 .config/: $(addprefix ~/.config/,$(CONFIG))
-	cp $? .config/ 
-	touch .config/
+	$(copy)
 
 .config/nvim/: $(addprefix ~/.config/,$(CONFIG_NVIM))
-	cp $? .config/nvim/ 
-	touch .config/nvim/
+	$(copy)
 
 .ssh/: $(addprefix ~/.ssh/,$(SSH))
-	cp $? .ssh/
-	touch .ssh/
+	$(copy)
 
 .tmux/: $(addprefix ~/.tmux/,$(TMUX))
-	cp $? .tmux/
-	touch .tmux/
+	$(copy)
 
 .vim/: $(addprefix ~/.vim/,$(VIM))
-	cp $? .vim/
-	touch .vim/
+	$(copy)
 
 .update: $(addprefix ~/,$(DOTFILES)) 
 	cp $? ./
