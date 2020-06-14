@@ -180,7 +180,8 @@ tmux_conf_theme_right_separator_sub='|'
 #     - #{username}
 #     - #{username_ssh}
 tmux_conf_theme_status_left=' ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %I:%M %p , %d %b | #{username}#{root} | #{hostname} '
+
+tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %I:%M %p , %d %b | #{username}#{root} | #{hostname}'
 
 # status left style
 tmux_conf_theme_status_left_fg='#000000,#e4e4e4,#e4e4e4'  # black, white , white
@@ -298,7 +299,7 @@ bind C-a send-prefix
 # set display-time till keystoke
 set -g display-time 0
 
-# Easy config reload
+# Easy config reload - this is in ~/.tmux.conf already
 #bind-key R source-file ~/.tmux.conf \; display-message "tmux.conf reloaded."
 
 # makes prefix n & prefix p work to cycle through tabs
@@ -311,14 +312,25 @@ bind-key p previous-window
 # set -g @plugin 'git@github.com/user/plugin'
 # set -g @plugin 'git@bitbucket.com/user/plugin'
 set -g @tpm_plugins ' \
+#  seebi/tmux-colors-solarized \
 	tmux-plugins/tpm \
+  christoomey/vim-tmux-navigator \
   tmux-plugins/tmux-sensible \
 	tmux-plugins/tmux-resurrect \
   tmux-plugins/tmux-continuum \
-  christoomey/vim-tmux-navigator \
-#  seebi/tmux-colors-solarized \
 '	
 set -g @continuum-restore 'on'
+# needs to be passed using "$" NOT '#{}'
+save_mins='5'
+set -g @continuum-save-interval "$save_mins"
+# set -g @continuum-save-interval '15'
+continuum_auto_save='#(~/.tmux/plugins/tmux-continuum/scripts/continuum_save.sh)'
+# using #{continuum_status} doesn't seem to work. it appears that the variables is set after the TMUX plugin manager is initialized
+# All changes to the status bar are dropped to pre - TPM initialization
+# runs continuum_save.sh ON status bar refresh (happens on status-interval - default 10s - get with :show -g status-interval)
+tmux_conf_theme_status_right="$tmux_conf_theme_status_right | $save_mins $continuum_auto_save"
+# tmux_conf_theme_status_right="$tmux_conf_theme_status_right | #{continuum_status}$continuum_auto_save"
+# set -g status-right 'Continuum status: #{continuum_status}'
 #set -g @plugin 'seebi/tmux-colors-solarized'
 #set -g @colors-solarized '256'
 
@@ -335,4 +347,3 @@ if -b 'test #{m:#{ITERM_PROFILE},#{LIGHTS}} != 0' 'source ~/.tmux.conf.local.lig
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run -b '~/.tmux/plugins/tpm/tpm'
-
