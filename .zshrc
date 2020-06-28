@@ -127,7 +127,9 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   brew
-  docker
+  docker #completion 
+  docker-compose #aliases & completion
+  docker-machine #aliases & completion
   git
 	golang
 	npm
