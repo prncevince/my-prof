@@ -1,7 +1,7 @@
 .PHONY: all symlinks constants
 
 PROFILE = .R/rstudio/themes/ .config/ .config/nvim/ .ssh/ .tmux/ .vim/ .update
-DOTFILES = .Renviron .dir_colors .fzf.zsh .tmux.conf.local\
+DOTFILES = .Renviron .dir_colors .fzf.zsh .gitconfig .tmux.conf.local\
 					 .tmux.conf.local.light .vimrc .zlogout .zshrc
 CONFIG = starship.toml
 CONFIG_NVIM = nvim/init.vim
