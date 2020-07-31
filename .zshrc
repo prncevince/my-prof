@@ -56,7 +56,7 @@ SPACESHIP_PROMPT_ORDER=(
   pyenv         # Pyenv section
 #  dotnet        # .NET section
 #  ember         # Ember.js section
-#  kubectl       # Kubectl context section
+  kubectl       # Kubectl context section
 #  terraform     # Terraform workspace section
   exec_time     # Execution time
   line_sep      # Line break
@@ -278,6 +278,11 @@ fd() {
     -o -type d -print 2> /dev/null | fzf +m) &&
   cd "$dir"
 }
+# fda - including hidden directories
+fda() {
+  local dir
+  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+}
 # fh - search in your command history and execute selected command
 fh() {
   eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
@@ -321,6 +326,9 @@ bindkey '^[[1;3D' backward-word
 ## SCRIPTS ##
 # local binaries can be called directly - if not on PATH, uses npx
 source <(npx --shell-auto-fallback zsh)
+# call `nvm use` automatically in directory with .nvmrc
+# SLOW!
+# source ~/.nvm.use
 
 ## SERVERS ##
 # SSH Agent #
