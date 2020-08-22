@@ -253,6 +253,9 @@ function theme() {
 test -r ~/.dir_colors && eval `gdircolors -b ~/.dir_colors`
 
 ## ENVIRONMENT VARIABLES ##
+# zsh history
+export HISTSIZE=1000000
+export SAVEHIST=$HISTSIZE
 # zshrc config file
 export ZSHRC=~/.zshrc
 # tmux config file

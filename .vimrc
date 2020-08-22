@@ -178,6 +178,8 @@ let g:ale_linters = {
 " GIT
 " gitgutter plugin
 set updatetime=250
+" fugitive 
+set modifiable
 " Netrw
 " doesn't work anymore ... not in vim > 8
 " remove/delete directories
