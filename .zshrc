@@ -146,17 +146,15 @@ plugins=(
 # Add the following to your ~/.zshrc file:
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
   autoload -Uz compinit
   compinit
 fi
 
-
 # Oh My Zsh
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
+### User configuration ###
+#
 # Bash completion for non-zsh compatible completion
 #if [ -f $(brew --prefix)/etc/bash_completion ]; then
 #    . $(brew --prefix)/etc/bash_completion
@@ -303,7 +301,6 @@ fif() {
     local file
     file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages "$@" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$@"' {}")" && open "$file"
 }
-
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
@@ -311,7 +308,6 @@ fe() (
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 )
-
 
 ## KEY BINDINGS ##
 # --> can't get working in tmux :( bindkey \C-k kill-line
