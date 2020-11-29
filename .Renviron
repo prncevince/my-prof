@@ -1,2 +1,5 @@
-### RStudio Variables? ###
+### RStudio Variables ###
 RSTUDIO_PANDOC=/usr/local/bin
+
+### User Library ###
+R_LIBS_USER=${R_LIBS_USER-'~/Library/R/%v/library'}

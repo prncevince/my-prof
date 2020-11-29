@@ -1,14 +1,17 @@
+# zsh Options
+# removes error on pattern match globs that don't match
+# unsetopt nomatch
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # PATH addons
 PATH=""
 if [ -x /usr/libexec/path_helper ]; then
-      eval `/usr/libexec/path_helper -s`
+  eval `/usr/libexec/path_helper -s`
 fi
 # Go
 export PATH=$PATH:${GOPATH//://bin:}/bin
 # Anaconda - see ZSH_THEME below
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -192,6 +195,32 @@ fi
 source ~/.private
 
 ##  ALIASES ##
+function R() {
+  rpath=/Library/Frameworks/R.framework/Versions
+  old=$(readlink "$rpath"/Current); 
+  if [ -f .Rversion ]; then
+    new=$(cat .Rversion)
+    if [[ $(/bin/ls "$rpath" | grep "$new") == "" ]]; then 
+      echo "R version" "$new" "not installed" && return 1; else
+      ln -sfh "$new" "$rpath"/Current; fi; fi
+  if [ -n "$ZSH_VERSION" ]; then setopt local_options no_monitor; fi
+  if [ -n "$BASH_VERSION" ]; then set +m; fi; 
+  ({ sleep 1; ln -sfh "$old" "$rpath"/Current; if [ -n "$BASH_VERSION" ]; then set -m; fi } &)
+  /usr/local/bin/R "$@" 
+}
+function Rscript() {
+  rpath=/Library/Frameworks/R.framework/Versions
+  old=$(readlink "$rpath"/Current); 
+  if [ -f .Rversion ]; then
+    new=$(cat .Rversion)
+    if [[ $(/bin/ls "$rpath" | grep "$new") == "" ]]; then 
+      echo "R version" "$new" "not installed" && return 1; else
+      ln -sfh "$new" "$rpath"/Current; fi; fi
+  if [ -n "$ZSH_VERSION" ]; then setopt local_options no_monitor; fi
+  if [ -n "$BASH_VERSION" ]; then set +m; fi; 
+  ({ sleep 1; ln -sfh "$old" "$rpath"/Current; if [ -n "$BASH_VERSION" ]; then set -m; fi } &)
+  /usr/local/bin/Rscript "$@" 
+}
 alias du="du -sh -- *"
 alias duh="/usr/bin/du -sh -- * .*"
 alias glt="git log --tags --simplify-by-decoration --pretty=\"format:%ci %d\""
@@ -204,6 +233,20 @@ alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
 alias perm="gstat -c '%a %n'"
 alias reload=". ~/.zshrc"
 alias restart="exec zsh -l"
+function rstudio() {
+  rpath=/Library/Frameworks/R.framework/Versions
+  old=$(readlink "$rpath"/Current); 
+  if [ -f .Rversion ]; then 
+    new=$(cat .Rversion)
+    if [[ $(/bin/ls "$rpath" | grep "$new") == "" ]]; then 
+      echo "R version" "$new" "not installed" && return 1; else
+      ln -sfh "$new" "$rpath"/Current; fi; fi
+  if [ -n "$ZSH_VERSION" ]; then unsetopt local_options nomatch; fi
+  if [ -f *.Rproj ]; then 
+    open -na Rstudio *.Rproj; else 
+    ("/Applications/RStudio.app/Contents/MacOS/RStudio" &)
+  fi; ({ sleep 5; ln -sfh "$old" "$rpath"/Current;} &)
+}
 alias spaceship="$EDITOR $ZSH_CUSTOM/themes/spaceship.zsh-theme"
 alias starshipconf="$EDITOR ~/.config/starship.toml"
 alias ta="tmux attach"
