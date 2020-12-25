@@ -4,19 +4,22 @@
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-# PATH addons
+### PATH addons ###
 PATH=""
 if [ -x /usr/libexec/path_helper ]; then
   eval `/usr/libexec/path_helper -s`
 fi
 # Go
 export PATH=$PATH:${GOPATH//://bin:}/bin
-# local binaries can be called directly - if not on PATH, uses npx
-source <(npx --shell-auto-fallback zsh)
-# call `nvm use` automatically in directory with .nvmrc
 # R / RStudio
 export PATH="$HOME/.R/shims:$PATH"
 # Anaconda - see ZSH_THEME below
+# NVM - Node/NPM
+# local binaries can be called directly - if not on PATH, uses npx
+# source <(npx --shell-auto-fallback zsh)
+# SLOW! call `nvm use` automatically in directory with .nvmrc
+# source ~/.nvm.use
+# export NVM_AUTO_USE=true
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -371,8 +374,6 @@ bindkey '^[[1;3C' forward-word
 bindkey '^[[1;3D' backward-word
 
 ## SCRIPTS ##
-# SLOW!
-# source ~/.nvm.use
 
 ## SERVERS ##
 # SSH Agent #
