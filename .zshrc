@@ -11,6 +11,10 @@ if [ -x /usr/libexec/path_helper ]; then
 fi
 # Go
 export PATH=$PATH:${GOPATH//://bin:}/bin
+# Python
+export PATH="$(brew --prefix)/opt/python@3/libexec/bin:$PATH"
+# pipx for python utilities
+export PATH="$PATH:$HOME/.local/bin"
 # R / RStudio
 export PATH="$HOME/.R/shims:$PATH"
 # Anaconda - see ZSH_THEME below
