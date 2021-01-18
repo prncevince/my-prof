@@ -229,7 +229,7 @@ source ~/.private
 #   ({ sleep 2; ln -sfh "$old" "$rpath"/Current; if [ -n "$BASH_VERSION" ]; then set -m; fi } &)
 #   /usr/local/bin/Rscript "$@" 
 # }
-alias du="du -sh -- *"
+alias du="/usr/bin/du -sh -- *"
 alias duh="/usr/bin/du -sh -- * .*"
 alias glt="git log --tags --simplify-by-decoration --pretty=\"format:%ci %d\""
 alias gltd="git log --tags --simplify-by-decoration --pretty=\"format:%cD %d\""
