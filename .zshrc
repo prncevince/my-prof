@@ -11,7 +11,7 @@ if [ -x /usr/libexec/path_helper ]; then
 fi
 # Go
 export PATH=$PATH:${GOPATH//://bin:}/bin
-# Python
+# Python - Homebrew
 export PATH="$(brew --prefix)/opt/python@3/libexec/bin:$PATH"
 # pipx for python utilities
 export PATH="$PATH:$HOME/.local/bin"
@@ -149,6 +149,9 @@ plugins=(
 	golang
 	npm
 	zsh-nvm
+  pyenv
+  pipenv
+  poetry
   #nvm
   tmux
   vi-mode
