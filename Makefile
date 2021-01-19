@@ -18,10 +18,10 @@ endef
 all: .deploy
 
 .deploy: $(PROFILE)
-	touch .deploy
 	git add .
 	git commit -m "update my profile"
 	git push
+	touch .deploy
 
 .R/rstudio/themes/: $(addprefix ~/.R/rstudio/themes/,$(RSTUDIO_THEMES))
 	$(copy)
