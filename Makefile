@@ -4,7 +4,7 @@ PROFILE = .R/rstudio/themes/ .config/ .config/nvim/ .ssh/ .tmux/ .vim/ .update
 DOTFILES = .Renviron .dir_colors .fzf.zsh .gitconfig .tmux.conf.local\
 	.tmux.conf.local.light .vimrc .zlogout .zshrc
 CONFIG = starship.toml
-CONFIG_NVIM = nvim/init.vim
+CONFIG_NVIM = nvim/init.vim nvim/coc-settings.json
 RSTUDIO_THEMES = night-owlish.rstheme
 SSH = config
 TMUX = .tmux.conf .tmux.conf.local README.md
