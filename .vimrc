@@ -28,6 +28,7 @@ Plug 'dense-analysis/ale'
 Plug 'jalvesaq/Nvim-R/'
 Plug 'tpope/vim-unimpaired' 
 Plug 'terryma/vim-multiple-cursors'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " DEOPLETE
 "" Below 3 are for deoplete
 "Plug 'Shougo/deoplete.nvim'
@@ -132,6 +133,25 @@ let g:deoplete#sources#ternjs#docs = 1
 "                \ 'vue',
 "                \ '...'
 "                \ ]
+"" LINTING / SYNTAX
+" ALE Plugin
+let g:airline#extensions#ale#enabled = 1
+let g:ale_fixers = {
+\	'javascript': ['eslint', 'standard'],
+\	'r': ['styler']
+\}
+let g:ale_linters = {
+\  'javascript': ['eslint', 'standard'],
+\}
+" Go - vim-go plugin 
+function DetectGoHtmlTmpl()
+    if expand('%:e') == "html" && search("{{") != 0
+        set filetype=gohtmltmpl 
+    endif
+endfunction
+augroup filetypedetect
+    au! BufRead,BufNewFile * call DetectGoHtmlTmpl()
+augroup END
 
 """ FUNCTIONALITY """
 " FZF Fuzzy Find
@@ -165,16 +185,6 @@ let g:airline_powerline_fonts = 1
 let g:airline_symbols = get(g:,'airline_symbols',{})
 let g:airline_symbols["dirty"] = '!'
 let g:airline_theme='vince'
-" LINTING / SYNTAX
-" ALE Plugin
-let g:airline#extensions#ale#enabled = 1
-let g:ale_fixers = {
-\	'javascript': ['eslint', 'standard'],
-\	'r': ['styler']
-\}
-let g:ale_linters = {
-\  'javascript': ['eslint', 'standard'],
-\}
 " GIT
 " gitgutter plugin
 set updatetime=250

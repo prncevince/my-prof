@@ -210,32 +210,7 @@ fi
 source ~/.private
 
 ##  ALIASES ##
-# function R() {
-#   rpath=/Library/Frameworks/R.framework/Versions
-#   old=$(readlink "$rpath"/Current); 
-#   if [ -f .Rversion ]; then
-#     new=$(cat .Rversion)
-#     if [[ $(/bin/ls "$rpath" | grep "$new") == "" ]]; then 
-#       echo "R version" "$new" "not installed" && return 1; else
-#       ln -sfh "$new" "$rpath"/Current; fi; fi
-#   if [ -n "$ZSH_VERSION" ]; then setopt local_options no_monitor; fi
-#   if [ -n "$BASH_VERSION" ]; then set +m; fi; 
-#   ({ sleep 2; ln -sfh "$old" "$rpath"/Current; if [ -n "$BASH_VERSION" ]; then set -m; fi } &)
-#   /usr/local/bin/R "$@" 
-# }
-# function Rscript() {
-#   rpath=/Library/Frameworks/R.framework/Versions
-#   old=$(readlink "$rpath"/Current); 
-#   if [ -f .Rversion ]; then
-#     new=$(cat .Rversion)
-#     if [[ $(/bin/ls "$rpath" | grep "$new") == "" ]]; then 
-#       echo "R version" "$new" "not installed" && return 1; else
-#       ln -sfh "$new" "$rpath"/Current; fi; fi
-#   if [ -n "$ZSH_VERSION" ]; then setopt local_options no_monitor; fi
-#   if [ -n "$BASH_VERSION" ]; then set +m; fi; 
-#   ({ sleep 2; ln -sfh "$old" "$rpath"/Current; if [ -n "$BASH_VERSION" ]; then set -m; fi } &)
-#   /usr/local/bin/Rscript "$@" 
-# }
+alias cocconf="$EDITOR ~/.config/nvim/coc-settings.json"
 alias du="/usr/bin/du -sh -- *"
 alias duh="/usr/bin/du -sh -- * .*"
 alias glt="git log --tags --simplify-by-decoration --pretty=\"format:%ci %d\""
@@ -248,20 +223,6 @@ alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
 alias perm="gstat -c '%a %n'"
 alias reload=". ~/.zshrc"
 alias restart="exec zsh -l"
-# function rstudio() {
-#   rpath=/Library/Frameworks/R.framework/Versions
-#   old=$(readlink "$rpath"/Current); 
-#   if [ -f .Rversion ]; then 
-#     new=$(cat .Rversion)
-#     if [[ $(/bin/ls "$rpath" | grep "$new") == "" ]]; then 
-#       echo "R version" "$new" "not installed" && return 1; else
-#       ln -sfh "$new" "$rpath"/Current; fi; fi
-#   if [ -n "$ZSH_VERSION" ]; then unsetopt local_options nomatch; fi
-#   if [ -f *.Rproj ]; then 
-#     open -na Rstudio *.Rproj; else 
-#     ("/Applications/RStudio.app/Contents/MacOS/RStudio" &)
-#   fi; ({ sleep 5; ln -sfh "$old" "$rpath"/Current;} &)
-# }
 alias spaceship="$EDITOR $ZSH_CUSTOM/themes/spaceship.zsh-theme"
 alias starshipconf="$EDITOR ~/.config/starship.toml"
 alias ta="tmux attach"
