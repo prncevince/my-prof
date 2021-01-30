@@ -345,11 +345,20 @@ bindkey '^[[1;3D' backward-word
 
 ## SERVERS ##
 # SSH Agent #
-# This is not needed on MacOS b/c it launches ssh-agent with launchd each time
+#
+# This is NOT needed on MacOS b/c it launches ssh-agent with launchd each time
 # see https://www.packetmischief.ca/2016/09/06/ssh-agent-on-os-x/
+# In addition, tmux inherits & continually resets the SSH_AUTH_SOCK from the parent environment value
+# Thus, the PID may only be set correctly in the parent process, so closing out of iTerm shuts down the ssh-agent 
 if [ -z "$SSH_AUTH_SOCK" ] ; then
-	eval `ssh-agent -s`
+	eval `/usr/bin/ssh-agent -s`
+  export SSH_AUTH_SOCK=$(launchctl getenv SSH_AUTH_SOCK)
+  /usr/bin/ssh-add -l > /dev/null 2>&1
+  export SSH_AGENT_PID=$(launchctl list | grep com.openssh.ssh-agent | awk '{print $1;}')
 fi
-# This is needed on MacOS b/c it does not set SSH_AGENT_PID
-export SSH_AGENT_PID=$(launchctl list | grep com.openssh.ssh-agent | awk '{print $1;}')
+# This IS needed on MacOS b/c it does not set SSH_AGENT_PID
+if [ -z "$SSH_AGENT_PID" ] ; then
+  /usr/bin/ssh-add -l > /dev/null 2>&1
+  export SSH_AGENT_PID=$(launchctl list | grep com.openssh.ssh-agent | awk '{print $1;}')
+fi
 
