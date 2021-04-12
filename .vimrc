@@ -29,6 +29,7 @@ Plug 'jalvesaq/Nvim-R/'
 Plug 'tpope/vim-unimpaired' 
 Plug 'terryma/vim-multiple-cursors'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'kassio/neoterm'
 " DEOPLETE
 "" Below 3 are for deoplete
 "Plug 'Shougo/deoplete.nvim'
@@ -45,11 +46,17 @@ call plug#end()
 "" language completion
 " COC 
 " COC extensions
+" add extensions to list to activate, COC will install on neovim/vim startup
 " run manually to install COC extensions: :CocInstall extension-name
+" coc-r-lsp:
+" uses R on top of path - works with prncevince/r-shims :)
+" uses languageserver R package, which lints with lintr, and can use styler
+" you can still fix code using ALE with styler
 let g:coc_global_extensions = [
   \ 'coc-css', 
   \ 'coc-html',
-  \ 'coc-json',
+  \ 'coc-json', 
+  \ 'coc-r-lsp',  
   \ 'coc-tsserver'
   \ ]
 " GoTo code navigation.
@@ -85,7 +92,7 @@ endif
 " update speeds
 set updatetime=300
 "
-" DEOPLETE "
+" DEOPLETE
 "let g:deoplete-options-auto_complete_delay 
 let g:deoplete#enable_at_startup = 1 
 " javascript - tern
@@ -142,6 +149,11 @@ let g:ale_fixers = {
 \}
 let g:ale_linters = {
 \  'javascript': ['eslint', 'standard'],
+\}
+" Do not lint or fix minified files.
+let g:ale_pattern_options = {
+\ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+\ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
 \}
 " Go - vim-go plugin 
 function DetectGoHtmlTmpl()
@@ -218,6 +230,14 @@ map <leader>ts :sp $TMUXCONF<CR>
 map <leader>tv :vsp $TMUXCONF<CR>
 " escape terminal emulatory
 :tnoremap <leader><Esc> <C-\><C-n>
+" neoterm 
+" REPL
+" sends the current file to a REPL in a terminal
+map <LEADER>rf :TREPLSendFile<CR>
+" sends the current line to a REPL in a terminal
+map <LEADER>rl :TREPLSendLine<CR>
+" sends the selection to a REPL in a terminal
+map <LEADER>rs :TREPLSendSelection<CR>
 " use mapped ALE fixer - ALEFix command
 nmap <LEADER>l <Plug>(ale_fix)
 " <SPACE> is <ENTER>

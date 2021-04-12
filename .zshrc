@@ -312,13 +312,22 @@ ff() {
   grep --line-buffered --color=never -r "" * | fzf
 }
 # alternative using ripgrep-all (rga) combined with fzf-tmux preview
-# implementation below makes use of "open" on macOS, which can be replaced by other commands if needed.
 # allows to search in PDFs, E-Books, Office documents, zip, tar.gz, etc. (see https://github.com/phiresky/ripgrep-all)
 # find-in-file - usage: fif <searchTerm> or fif "string with spaces" or fif "regex"
+# works within vim / nvim terminal sessions
 fif() {
-    if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
-    local file
-    file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages "$@" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$@"' {}")" && open "$file"
+  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+  local file
+  file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages "$@" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$1"' {}")" || return 0
+  if [ -n $VIM ]; then
+    if [ -n $NVIM_LISTEN_ADDRESS ]; then
+      nvr --remote-send "<C-\><C-N>:vsp $file<CR>"
+    else
+      "$EDITOR" --remote-send "<C-\><C-N>:vsp $file<CR>"
+    fi
+  else 
+    "$EDITOR" "$file"
+  fi
 }
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)

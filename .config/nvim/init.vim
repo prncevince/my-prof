@@ -2,6 +2,8 @@
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
+" resource init.vim on save
+autocmd BufWritePost $MYVIMRC source %
 
 " alias
 "command! "conf" "e $NVIMINIT" 
@@ -28,3 +30,15 @@ map <M-h> <C-w><
 map <M-j> <C-w>-
 map <M-k> <C-w>+
 map <M-l> <C-w>>
+
+" repl / terminal
+" Open the neoterm in a vertical split if current window width is bigger than
+" 100, otherwise use a horizontal split.
+let g:neoterm_callbacks = {}
+function! g:neoterm_callbacks.before_new()
+  if winwidth('.') > 100
+    let g:neoterm_default_mod = 'botright vertical'
+  else
+    let g:neoterm_default_mod = 'botright'
+  end
+endfunction
