@@ -1,11 +1,12 @@
 .PHONY: all symlinks constants
 
-PROFILE = .R/rstudio/themes/ .config/ .config/nvim/ .ssh/ .tmux/ .vim/ .update
+PROFILE = .R/shims/ .R/rstudio/themes/ .config/ .config/nvim/ .ssh/ .tmux/ .vim/ .update
 DOTFILES = .Renviron .dir_colors .fzf.zsh .gitconfig .tmux.conf.local\
 	.tmux.conf.local.light .vimrc .zlogout .zshrc
 CONFIG = starship.toml
-CONFIG_NVIM = nvim/init.vim nvim/coc-settings.json
-RSTUDIO_THEMES = night-owlish.rstheme
+CONFIG_NVIM = init.vim coc-settings.json
+R_SHIMS = R.sh Rscript.sh rstudio.sh README.md
+R_RSTUDIO_THEMES = night-owlish.rstheme
 SSH = config
 TMUX = .tmux.conf .tmux.conf.local README.md
 VIM = coc-settings.json
@@ -23,13 +24,16 @@ all: .deploy
 	git push
 	touch .deploy
 
-.R/rstudio/themes/: $(addprefix ~/.R/rstudio/themes/,$(RSTUDIO_THEMES))
+.R/shims/: $(addprefix ~/.R/shims/,$(R_SHIMS))
+	$(copy)
+
+.R/rstudio/themes/: $(addprefix ~/.R/rstudio/themes/,$(R_RSTUDIO_THEMES))
 	$(copy)
 
 .config/: $(addprefix ~/.config/,$(CONFIG))
 	$(copy)
 
-.config/nvim/: $(addprefix ~/.config/,$(CONFIG_NVIM))
+.config/nvim/: $(addprefix ~/.config/nvim/,$(CONFIG_NVIM))
 	$(copy)
 
 .ssh/: $(addprefix ~/.ssh/,$(SSH))
@@ -47,6 +51,9 @@ all: .deploy
 
 symlinks: 
 	ln -fs .tmux/.tmux.conf .tmux.conf
+	ln -fs .R/shims/R.sh .R/shims/R
+	ln -fs .R/shims/Rscript.sh .R/shims/Rscript
+	ln -fs .R/shims/rstudio.sh .R/shims/rstudio
 
 constants:
 	cp ~/.condarc ./
