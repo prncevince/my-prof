@@ -15,6 +15,11 @@ export PATH=$PATH:${GOPATH//://bin:}/bin
 export PATH="$(brew --prefix)/opt/python@3/libexec/bin:$PATH"
 # pipx for python utilities
 export PATH="$PATH:$HOME/.local/bin"
+# pyenv - handles configuring pyenv - from the plugin magic :)
+# export ZSH_PYENV_QUIET=true
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/shims:$PATH"
+eval "$(pyenv init -)"
 # R / RStudio
 export PATH="$HOME/.R/shims:$PATH"
 # Anaconda - see ZSH_THEME below
@@ -149,7 +154,7 @@ plugins=(
 	golang
 	npm
 	zsh-nvm
-  pyenv
+  #pyenv # not working as intended with all the incorrect config messages - handled in PATH section
   pipenv
   poetry
   #nvm
