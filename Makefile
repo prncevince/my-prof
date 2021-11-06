@@ -1,10 +1,11 @@
 .PHONY: all symlinks constants
 
-PROFILE = .R/shims/ .R/rstudio/themes/ .config/ .config/nvim/ .ssh/ .tmux/ .vim/ .update
+PROFILE = .R/shims/ .R/rstudio/themes/ .config/ .config/nvim/ .config/yarn/global/ .ssh/ .tmux/ .vim/ .update
 DOTFILES = .Renviron .dir_colors .fzf.zsh .gitconfig .tmux.conf.local\
 	.tmux.conf.local.light .vimrc .zlogout .zshrc
 CONFIG = starship.toml
 CONFIG_NVIM = init.vim coc-settings.json
+CONFIG_YARN_GLOBAL = package.json yarn.lock
 R_SHIMS = R.sh Rscript.sh rstudio.sh README.md
 R_RSTUDIO_THEMES = night-owlish.rstheme
 SSH = config
@@ -12,6 +13,7 @@ TMUX = .tmux.conf .tmux.conf.local README.md
 VIM = coc-settings.json
 
 define copy
+	if [ ! -d $@ ]; then mkdir -p $@; fi 
 	cp $? $@
 	touch $@
 endef
@@ -34,6 +36,9 @@ all: .deploy
 	$(copy)
 
 .config/nvim/: $(addprefix ~/.config/nvim/,$(CONFIG_NVIM))
+	$(copy)
+
+.config/yarn/global/: $(addprefix ~/.config/yarn/global/,$(CONFIG_YARN_GLOBAL))
 	$(copy)
 
 .ssh/: $(addprefix ~/.ssh/,$(SSH))
