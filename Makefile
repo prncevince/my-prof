@@ -1,7 +1,6 @@
 .PHONY: all symlinks constants
 
-PROFILE = .R/shims/ .R/rstudio/themes/ .config/ .config/nvim/ .config/yarn/global/ .ssh/ .tmux/ .vim/ .update
-DOTFILES = .Renviron .dir_colors .fzf.zsh .gitconfig .tmux.conf.local\
+DOT = .Renviron .dir_colors .fzf.zsh .gitconfig .tmux.conf.local\
 	.tmux.conf.local.light .vimrc .zlogout .zshrc
 CONFIG = starship.toml
 CONFIG_NVIM = init.vim coc-settings.json
@@ -12,47 +11,29 @@ SSH = config
 TMUX = .tmux.conf .tmux.conf.local README.md
 VIM = coc-settings.json
 
-define copy
-	if [ ! -d $@ ]; then mkdir -p $@; fi 
-	cp $? $@
-	touch $@
-endef
+DOT_FILES = $(addprefix ~/,$(DOT))
+CONFIG_FILES = $(addprefix ~/.config/,$(CONFIG))
+CONFIG_NVIM_FILES = $(addprefix ~/.config/nvim/,$(CONFIG_NVIM))
+CONFIG_YARN_GLOBAL_FILES = $(addprefix ~/.config/yarn/global/,$(CONFIG_YARN_GLOBAL))
+R_SHIMS_FILES = $(addprefix ~/.R/shims/,$(R_SHIMS))
+R_RSTUDIO_THEMES_FILES = $(addprefix ~/.R/rstudio/themes/,$(R_RSTUDIO_THEMES))
+SSH_FILES = $(addprefix ~/.ssh/,$(SSH)) 
+TMUX_FILES = $(addprefix ~/.tmux/,$(TMUX))
+VIM_FILES = $(addprefix ~/.vim/,$(VIM))
 
-all: .deploy
+ALL = $(DOT_FILES) $(CONFIG_FILES) $(CONFIG_NVIM_FILES) $(CONFIG_YARN_GLOBAL_FILES) \
+	$(R_SHIMS_FILES) $(R_RSTUDIO_THEMES_FILES) $(SSH_FILES) $(VIM_FILES)
 
-.deploy: $(PROFILE)
+all: .all
+
+# you are entering the GNU make recipe shell - there be dragons
+.all: $(ALL)
+	$(foreach i, $(shell for i in {1..$(words $?)}; do echo $$i; done),d=$(word $(i), $(subst $(HOME),.,$(?D))); if [ ! -d $$d ]; then mkdir -p $$d; fi;) 
+	$(foreach i, $(shell for i in {1..$(words $?)}; do echo $$i; done),cp -p $(word $(i), $?) $(word $(i), $(subst $(HOME),.,$(?D)));)
 	git add .
-	git commit -m "update my profile"
+	git commit -m "update $(subst $(HOME),~,$?)"
 	git push
-	touch .deploy
-
-.R/shims/: $(addprefix ~/.R/shims/,$(R_SHIMS))
-	$(copy)
-
-.R/rstudio/themes/: $(addprefix ~/.R/rstudio/themes/,$(R_RSTUDIO_THEMES))
-	$(copy)
-
-.config/: $(addprefix ~/.config/,$(CONFIG))
-	$(copy)
-
-.config/nvim/: $(addprefix ~/.config/nvim/,$(CONFIG_NVIM))
-	$(copy)
-
-.config/yarn/global/: $(addprefix ~/.config/yarn/global/,$(CONFIG_YARN_GLOBAL))
-	$(copy)
-
-.ssh/: $(addprefix ~/.ssh/,$(SSH))
-	$(copy)
-
-.tmux/: $(addprefix ~/.tmux/,$(TMUX))
-	$(copy)
-
-.vim/: $(addprefix ~/.vim/,$(VIM))
-	$(copy)
-
-.update: $(addprefix ~/,$(DOTFILES)) 
-	cp $? ./
-	touch .update
+	touch .all
 
 symlinks: 
 	ln -fs .tmux/.tmux.conf .tmux.conf
