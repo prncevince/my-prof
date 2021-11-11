@@ -15,6 +15,7 @@ export PATH=$PATH:${GOPATH//://bin:}/bin
 export PATH="$(brew --prefix)/opt/python@3/libexec/bin:$PATH"
 # pipx for python utilities
 export PATH="$PATH:$HOME/.local/bin"
+# pipenv uses pyenv :)
 # pyenv - handles configuring pyenv - from the plugin magic :)
 # export ZSH_PYENV_QUIET=true
 export PYENV_ROOT="$HOME/.pyenv"
@@ -216,6 +217,7 @@ source ~/.private
 
 ##  ALIASES ##
 alias cocconf="$EDITOR ~/.config/nvim/coc-settings.json"
+alias color="eval \`gdircolors -b ~/.dir_colors\`"
 alias du="/usr/bin/du -sh -- *"
 alias duh="/usr/bin/du -sh -- * .*"
 alias glt="git log --tags --simplify-by-decoration --pretty=\"format:%ci %d\""
@@ -234,7 +236,7 @@ alias ta="tmux attach"
 alias tmuxconf="$EDITOR ~/.tmux.conf.local"
 alias tn="tmux -L s2 -f /dev/null new-session -s test"
 alias tk="tmux -L s2 kill-server"
-alias tree="tree --dirsfirst -hCD"
+alias tree="/usr/local/bin/tree --dirsfirst -hCDa -I .git"
 alias nvimconf="$EDITOR ~/.config/nvim/init.vim"
 alias vimconf="$EDITOR ~/.vimrc"
 alias v="$EDITOR ."
@@ -323,9 +325,9 @@ ff() {
 fif() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
   local file
-  file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages "$@" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$1"' {}")" || return 0
-  if [ -n $VIM ]; then
-    if [ -n $NVIM_LISTEN_ADDRESS ]; then
+  file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages --hidden --iglob '!.git' "$@" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$1"' {}")" || return 0
+  if [ -n "$VIM" ]; then
+    if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
       nvr --remote-send "<C-\><C-N>:vsp $file<CR>"
     else
       "$EDITOR" --remote-send "<C-\><C-N>:vsp $file<CR>"
