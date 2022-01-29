@@ -17,14 +17,8 @@ export PATH="$(brew --prefix)/opt/python@3/libexec/bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
 # pipenv uses pyenv :)
 # pyenv - handles configuring pyenv - from the plugin magic :)
-#export PYENV_ROOT="$HOME/.pyenv"
-#export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 export PYENV_ROOT="$(pyenv root)"
-# export ZSH_PYENV_QUIET=true
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/shims:$PATH"
-# eval "$(pyenv init - --no-rehash)"
 # R / RStudio
 export PATH="$HOME/.R/shims:$PATH"
 # Anaconda - see ZSH_THEME below
@@ -240,7 +234,7 @@ alias ta="tmux attach"
 alias tmuxconf="$EDITOR ~/.tmux.conf.local"
 alias tn="tmux -L s2 -f /dev/null new-session -s test"
 alias tk="tmux -L s2 kill-server"
-alias tree="/usr/local/bin/tree --dirsfirst -hCDa -I .git -I .Rproj.user"
+alias tree='/usr/local/bin/tree --dirsfirst -hCDa -I "\.git|\.Rproj\.user"'
 alias nvimconf="$EDITOR ~/.config/nvim/init.vim"
 alias vimconf="$EDITOR ~/.vimrc"
 alias v="$EDITOR ."
