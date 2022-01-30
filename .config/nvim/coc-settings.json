@@ -1,3 +1,4 @@
 {
-  "html.filetypes": ["html","handlebars","htmldjango","blade","gohtmltmpl"]
+  "html.filetypes": ["html","handlebars","htmldjango","blade","gohtmltmpl"],
+  "coc.preferences.extensionUpdateCheck": "daily"
 }

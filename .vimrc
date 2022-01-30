@@ -56,6 +56,7 @@ let g:coc_global_extensions = [
   \ 'coc-css', 
   \ 'coc-html',
   \ 'coc-json', 
+  \ 'coc-marketplace',
   \ 'coc-r-lsp',  
   \ 'coc-tsserver'
   \ ]
@@ -320,3 +321,4 @@ endif
 
 """ COMMANDS """
 command! E Explore
+command! C CocConfig 

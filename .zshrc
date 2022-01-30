@@ -15,9 +15,11 @@ export PATH=$PATH:${GOPATH//://bin:}/bin
 export PATH="$(brew --prefix)/opt/python@3/libexec/bin:$PATH"
 # pipx for python utilities
 export PATH="$PATH:$HOME/.local/bin"
-# pipenv uses pyenv :)
-# pyenv - handles configuring pyenv - from the plugin magic :)
+# pipenv uses pyenv - but pyenv does not use pipenv :)
+# pynev-virtualenv is the virutalenv plugin for pyenv 
+# ran post install of brew install pyenv-virtualenv -> eval "$(pyenv virtualenv-init -)"
 eval "$(pyenv init --path)"
+# pyenv - handles configuring pyenv - from the plugin magic :)
 export PYENV_ROOT="$(pyenv root)"
 # R / RStudio
 export PATH="$HOME/.R/shims:$PATH"
