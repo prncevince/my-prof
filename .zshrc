@@ -17,8 +17,10 @@ export PATH="$(brew --prefix)/opt/python@3/libexec/bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
 # pipenv uses pyenv - but pyenv does not use pipenv :)
 # pynev-virtualenv is the virutalenv plugin for pyenv 
-# ran post install of brew install pyenv-virtualenv -> eval "$(pyenv virtualenv-init -)"
+# all of these need to be ran
 eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 # pyenv - handles configuring pyenv - from the plugin magic :)
 export PYENV_ROOT="$(pyenv root)"
 # R / RStudio
@@ -325,7 +327,7 @@ ff() {
 fif() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
   local file
-  file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages --hidden --iglob '!.git' "$@" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$1"' {}")" || return 0
+  file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages --hidden --iglob '!.git|!node_modules|!.Rproj.user' "$@" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$1"' {}")" || return 0
   if [ -n "$VIM" ]; then
     if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
       nvr --remote-send "<C-\><C-N>:vsp $file<CR>"
