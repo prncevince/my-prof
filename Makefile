@@ -31,7 +31,7 @@ all: .all
 	$(foreach i, $(shell for i in {1..$(words $?)}; do echo $$i; done),d=$(word $(i), $(subst $(HOME),.,$(?D))); if [ ! -d $$d ]; then mkdir -p $$d; fi;) 
 	$(foreach i, $(shell for i in {1..$(words $?)}; do echo $$i; done),/usr/local/bin/gcp -pu $(word $(i), $?) $(word $(i), $(subst $(HOME),.,$(?D)));)
 	git add .
-	git commit -m "update $(addprefix ~/,$(shell git diff-index --name-only HEAD))"
+	git diff-index --quiet HEAD || git commit -m "update $(addprefix ~/,$(shell git diff-index --name-only HEAD))"
 	git push
 	touch .all
 
