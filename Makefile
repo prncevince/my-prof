@@ -1,4 +1,4 @@
-.PHONY: all symlinks constants
+.PHONY: test all symlinks constants
 
 DOT = .Renviron .dir_colors .fzf.zsh .gitconfig .tmux.conf.local\
 	.tmux.conf.local.light .vimrc .zlogout .zshrc
@@ -29,9 +29,9 @@ all: .all
 # you are entering the GNU make recipe shell - there be dragons
 .all: $(ALL)
 	$(foreach i, $(shell for i in {1..$(words $?)}; do echo $$i; done),d=$(word $(i), $(subst $(HOME),.,$(?D))); if [ ! -d $$d ]; then mkdir -p $$d; fi;) 
-	$(foreach i, $(shell for i in {1..$(words $?)}; do echo $$i; done),cp -p $(word $(i), $?) $(word $(i), $(subst $(HOME),.,$(?D)));)
+	$(foreach i, $(shell for i in {1..$(words $?)}; do echo $$i; done),/usr/local/bin/gcp -pu $(word $(i), $?) $(word $(i), $(subst $(HOME),.,$(?D)));)
 	git add .
-	git commit -m "update $(subst $(HOME),~,$?)"
+	git commit -m "update $(addprefix ~/,$(shell git diff-index --name-only HEAD))"
 	git push
 	touch .all
 
