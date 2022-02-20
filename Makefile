@@ -1,4 +1,4 @@
-.PHONY: test all symlinks constants
+.PHONY: all symlinks constants
 
 DOT = .Renviron .dir_colors .fzf.zsh .gitconfig .tmux.conf.local\
 	.tmux.conf.local.light .vimrc .zlogout .zshrc
@@ -31,7 +31,7 @@ all: .all
 	$(foreach i, $(shell for i in {1..$(words $?)}; do echo $$i; done),d=$(word $(i), $(subst $(HOME),.,$(?D))); if [ ! -d $$d ]; then mkdir -p $$d; fi;) 
 	$(foreach i, $(shell for i in {1..$(words $?)}; do echo $$i; done),/usr/local/bin/gcp -pu $(word $(i), $?) $(word $(i), $(subst $(HOME),.,$(?D)));)
 	git add .
-	git diff-index --quiet HEAD || git commit -m "update $(addprefix ~/,$(shell git diff-index --name-only HEAD))"
+	git diff-index --quiet HEAD || git diff-index --name-only HEAD | sed 's/.*/~\/&/' | tr '\n' ' ' | sed -r 's/.*/update &/;s/(.*) /\1/' | git commit -F -
 	git push
 	touch .all
 
