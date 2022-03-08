@@ -5,6 +5,7 @@ DOT = .Renviron .dir_colors .fzf.zsh .gitconfig .tmux.conf.local\
 ANACONDA3_ETC_JUPYTER_JUPYTERNOTEBOOKCONFIGD = jupyterlab.json nteract_on_jupyter.json
 ANACONDA3_ETC_JUPYTER_NBCONFIG = notebook.json 
 ANACONDA3_ETC_JUPYTER_NBCONFIG_NOTEBOOKD = ipyaggrid.json plotlywidget.json vega.json widgetsnbextension.json
+ANACONDA3_SHARE_JUPYTER_LAB_SETTINGS = build_config.json page_config.json
 CONFIG = starship.toml
 CONFIG_NVIM = init.vim coc-settings.json
 CONFIG_YARN_GLOBAL = package.json yarn.lock
@@ -20,6 +21,7 @@ DOT_FILES = $(addprefix ~/,$(DOT))
 ANACONDA3_ETC_JUPYTER_JUPYTERNOTEBOOKCONFIGD_FILES = $(addprefix ~/anaconda3/etc/jupyter/jupyter_notebook_config.d/,$(ANACONDA3_ETC_JUPYTER_JUPYTERNOTEBOOKCONFIGD))
 ANACONDA3_ETC_JUPYTER_NBCONFIG_FILES = $(addprefix ~/anaconda3/etc/jupyter/nbconfig/,$(ANACONDA3_ETC_JUPYTER_NBCONFIG))
 ANACONDA3_ETC_JUPYTER_NBCONFIG_NOTEBOOKD_FILES = $(addprefix ~/anaconda3/etc/jupyter/nbconfig/notebook.d/,$(ANACONDA3_ETC_JUPYTER_NBCONFIG_NOTEBOOKD))
+ANACONDA3_SHARE_JUPYTER_LAB_SETTINGS_FILES = $(addprefix ~/anaconda3/share/jupyter/lab/settings/,$(ANACONDA3_SHARE_JUPYTER_LAB_SETTINGS))
 CONFIG_FILES = $(addprefix ~/.config/,$(CONFIG))
 CONFIG_NVIM_FILES = $(addprefix ~/.config/nvim/,$(CONFIG_NVIM))
 CONFIG_YARN_GLOBAL_FILES = $(addprefix ~/.config/yarn/global/,$(CONFIG_YARN_GLOBAL))
@@ -31,8 +33,9 @@ SSH_FILES = $(addprefix ~/.ssh/,$(SSH))
 TMUX_FILES = $(addprefix ~/.tmux/,$(TMUX))
 VIM_FILES = $(addprefix ~/.vim/,$(VIM))
 
-ALL = $(DOT_FILES) $(ANACONDA3_ETC_JUPYTER_JUPYTERNOTEBOOKCONFIGD_FILES) \
-	$(ANACONDA3_ETC_JUPYTER_NBCONFIG_FILES) $(ANACONDA3_ETC_JUPYTER_NBCONFIG_NOTEBOOKD_FILES) \
+ALL = $(DOT_FILES) \
+	$(ANACONDA3_ETC_JUPYTER_JUPYTERNOTEBOOKCONFIGD_FILES) $(ANACONDA3_ETC_JUPYTER_NBCONFIG_FILES) \
+	$(ANACONDA3_ETC_JUPYTER_NBCONFIG_NOTEBOOKD_FILES) $(ANACONDA3_SHARE_JUPYTER_LAB_SETTINGS_FILES) \
 	$(CONFIG_FILES) $(CONFIG_NVIM_FILES) $(CONFIG_YARN_GLOBAL_FILES) \
 	$(JUPYTER_NBCONFIG_FILES) $(R_SHIMS_FILES) $(R_RSTUDIO_THEMES_FILES) $(SSH_FILES) \
 	$(TMUX_FILES) $(VIM_FILES)
