@@ -1,0 +1,22 @@
+{
+  "Cell": {
+    "cm_config": {
+      "lineNumbers": true
+    }
+  },
+  "keys": {
+    "command": {
+      "bind": {
+        "right": "jupyter-notebook:move-cell-down",
+        "left": "jupyter-notebook:move-cell-up"
+      }
+    }
+  },
+  "load_extensions": {
+    "jupyter-js-widgets/extension": true
+  },
+  "Notebook": {
+    "Header": true,
+    "Toolbar": false
+  }
+}

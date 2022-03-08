@@ -222,6 +222,12 @@ alias cocconf="$EDITOR ~/.config/nvim/coc-settings.json"
 alias color="eval \`gdircolors -b ~/.dir_colors\`"
 alias du="/usr/bin/du -sh -- *"
 alias duh="/usr/bin/du -sh -- * .*"
+# Show the diff between latest stash and local working tree
+alias gdst='git diff stash@{0}' # = git stash show -l
+# Show the diff between latest stash and HEAD
+alias gdsth='git diff stash@{0} HEAD'
+# Show the diff between latest stash and its original parent commit
+alias gdstp='git diff stash@{0}^ stash@{0}' # = git stash show -p
 alias glt="git log --tags --simplify-by-decoration --pretty=\"format:%ci %d\""
 alias gltd="git log --tags --simplify-by-decoration --pretty=\"format:%cD %d\""
 alias gz="git-cz"
@@ -238,7 +244,7 @@ alias ta="tmux attach"
 alias tmuxconf="$EDITOR ~/.tmux.conf.local"
 alias tn="tmux -L s2 -f /dev/null new-session -s test"
 alias tk="tmux -L s2 kill-server"
-alias tree='/usr/local/bin/tree --dirsfirst -hCDa -I "\.git|\.Rproj\.user|\node_modules"'
+alias tree='/usr/local/bin/tree --dirsfirst --du -ahlpCD -I "\.git|\.Rproj\.user|\node_modules"'
 alias nvimconf="$EDITOR ~/.config/nvim/init.vim"
 alias vimconf="$EDITOR ~/.vimrc"
 alias v="$EDITOR ."
@@ -297,6 +303,14 @@ export VIMRC=$HOME/.vimrc
 export NVIMINIT=$HOME/.config/nvim/init.vim
 
 ## FUNCTIONS ##
+# conda-export
+conda-export() {
+  for env in $(conda env list | cut -d" " -f1); do 
+    if [[ ${env:0:1} == "#" ]] ; then continue; fi;
+    conda env export -n $env > ${env}.yml
+  done
+}
+#
 # fzf functions - fuzzy finder 
 # fuzzy finder shortcut is '^ + R'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
