@@ -54,7 +54,7 @@ all: .all
 # inception deployment - copy files in repo to server if they don't exist
 $(ALL):
 	$(foreach i, $(shell for i in {1..$(words $@)}; do echo $$i; done),d=$(word $(i), $(@D)); if [ ! -d $$d ]; then mkdir -p $$d; fi;) 
-	$(foreach i, $(shell for i in {1..$(words $@)}; do echo $$i; done),/usr/local/bin/gcp -pu $(word $(i), $(subst $(HOME),.,$(@D))) $(word $(i), $@);)
+	$(foreach i, $(shell for i in {1..$(words $@)}; do echo $$i; done),/usr/local/bin/gcp -pu $(word $(i), $(subst $(HOME),.,$@)) $(word $(i), $(@D));)
 
 symlinks: 
 	ln -fs .tmux/.tmux.conf .tmux.conf
