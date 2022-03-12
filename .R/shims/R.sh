@@ -2,10 +2,19 @@
 if [ -f .Rversion ]; then
   rpath=/Library/Frameworks/R.framework/Versions
   ver=$(/bin/cat .Rversion)
-  if [[ $(/bin/ls "$rpath" | /usr/bin/grep "$ver") == "" ]]; then
+  rpaths=$(/bin/ls "$rpath" | /usr/bin/grep "$ver")
+  if [[ -z "$rpaths" ]]; then
     echo "R version" "$ver" "not installed" && exit
   else
-    export R_HOME="$rpath"/"$ver"/Resources
+    if [[ -n $(/usr/sbin/sysctl -n machdep.cpu.brand_string | /usr/bin/grep "Apple") ]]; then
+      arm=1
+      ver_arm=$(echo "$rpaths" | /usr/bin/grep "arm")
+    fi
+    if [[ "$arm" == 1 && -n "$ver_arm" ]]; then
+      export R_HOME="$rpath"/"$ver_arm"/Resources
+    else
+      export R_HOME="$rpath"/"$ver"/Resources
+    fi
   fi
   exec "$R_HOME"/R "$@"
 else

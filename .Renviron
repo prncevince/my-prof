@@ -2,4 +2,9 @@
 RSTUDIO_PANDOC=/usr/local/bin
 
 ### User Library ###
-R_LIBS_USER=${R_LIBS_USER-'~/Library/R/%v/library'}
+# Some part of the mac R installaton seems to set this by default nowadays 
+# These directories must exist to be put ontop of .libPaths()
+# Intel
+# R_LIBS_USER=${R_LIBS_USER-'~/Library/R/%v/library'}
+# ARM - Sys.info()["machine"]
+# R_LIBS_USER=${R_LIBS_USER-'~/Library/R/arm64/%v/library'}
