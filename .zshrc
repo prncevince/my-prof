@@ -9,6 +9,12 @@ PATH=""
 if [ -x /usr/libexec/path_helper ]; then
   eval `/usr/libexec/path_helper -s`
 fi
+# Mac Platforms
+if [[ $(uname -p) == "arm" || -z "$JUPYTER_SERVER_HOST" ]]; then
+  # Homebrew
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  alias brew-old=/usr/local/bin/brew
+fi
 # Go
 export PATH=$PATH:${GOPATH//://bin:}/bin
 # Python - Homebrew

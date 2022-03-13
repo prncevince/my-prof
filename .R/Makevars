@@ -1,0 +1,4 @@
+# CC=clang
+# CXX=clang++
+CPPFLAGS += -Xclang -fopenmp
+LDFLAGS += -L/opt/homebrew/opt/libomp/lib -lomp
