@@ -1,0 +1,32 @@
+{
+    "shortcuts": [
+        {
+            "command": "notebook:hide-cell-outputs",
+            "keys": [
+                "Alt M"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "command": "notebook:show-cell-outputs",
+            "keys": [
+                "Alt Shift M"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "command": "notebook:move-cell-up",
+            "keys": [
+                "ArrowLeft"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "command": "notebook:move-cell-down",
+            "keys": [
+                "ArrowRight"
+            ],
+            "selector": ".jp-Notebook:focus"
+        }
+    ]
+}
