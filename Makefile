@@ -61,7 +61,7 @@ $(ALL):
 	$(foreach i, $(shell for i in {1..$(words $@)}; do echo $$i; done),$(BREWPREFIX)/bin/gcp -pu $(word $(i), $(subst $(HOME),.,$@)) $(word $(i), $(@D));)
 
 brew:
-	brew bundle dump --file=~/.Brewfile
+	brew bundle dump --file=~/.Brewfile --force
 
 symlinks: 
 	ln -fs .tmux/.tmux.conf .tmux.conf
