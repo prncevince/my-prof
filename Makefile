@@ -1,6 +1,6 @@
-.PHONY: all symlinks constants
+.PHONY: all brew symlinks constants
 
-DOT = .Renviron .dir_colors .fzf.zsh .gitconfig .tmux.conf.local\
+DOT = .Brewlist .Renviron .dir_colors .fzf.zsh .gitconfig .tmux.conf.local\
 	.tmux.conf.local.light .vimrc .zlogout .zshrc
 ANACONDA3_ETC_JUPYTER_JUPYTERNOTEBOOKCONFIGD = jupyterlab.json nteract_on_jupyter.json
 ANACONDA3_ETC_JUPYTER_NBCONFIG = notebook.json 
@@ -11,6 +11,7 @@ CONFIG_NVIM = init.vim coc-settings.json
 CONFIG_YARN_GLOBAL = package.json yarn.lock
 JUPYTER_LAB_USER-SETTINGS_@JUPYTERLAB_SHORTCUTS-EXTENSION = shortcuts.jupyterlab-settings
 JUPYTER_NBCONFIG = notebook.json
+R = Makevars
 R_SHIMS = R.sh Rscript.sh rstudio.sh README.md
 R_RSTUDIO_THEMES = night-owlish.rstheme
 SSH = config
@@ -27,6 +28,7 @@ CONFIG_NVIM_FILES = $(addprefix ~/.config/nvim/,$(CONFIG_NVIM))
 CONFIG_YARN_GLOBAL_FILES = $(addprefix ~/.config/yarn/global/,$(CONFIG_YARN_GLOBAL))
 JUPYTER_LAB_USER-SETTINGS_@JUPYTERLAB_SHORTCUTS-EXTENSION_FILES = $(addprefix ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension/,$(JUPYTER_LAB_USER-SETTINGS_@JUPYTERLAB_SHORTCUTS-EXTENSION))
 JUPYTER_NBCONFIG_FILES = $(addprefix ~/.jupyter/nbconfig/,$(JUPYTER_NBCONFIG))
+R_FILES = $(addprefix ~/.R/,$(R))
 R_SHIMS_FILES = $(addprefix ~/.R/shims/,$(R_SHIMS))
 R_RSTUDIO_THEMES_FILES = $(addprefix ~/.R/rstudio/themes/,$(R_RSTUDIO_THEMES))
 SSH_FILES = $(addprefix ~/.ssh/,$(SSH)) 
@@ -37,7 +39,7 @@ ALL = $(DOT_FILES) \
 	$(ANACONDA3_ETC_JUPYTER_JUPYTERNOTEBOOKCONFIGD_FILES) $(ANACONDA3_ETC_JUPYTER_NBCONFIG_FILES) \
 	$(ANACONDA3_ETC_JUPYTER_NBCONFIG_NOTEBOOKD_FILES) $(ANACONDA3_SHARE_JUPYTER_LAB_SETTINGS_FILES) \
 	$(CONFIG_FILES) $(CONFIG_NVIM_FILES) $(CONFIG_YARN_GLOBAL_FILES) \
-	$(JUPYTER_NBCONFIG_FILES) $(R_SHIMS_FILES) $(R_RSTUDIO_THEMES_FILES) $(SSH_FILES) \
+	$(JUPYTER_NBCONFIG_FILES) $(R_FILES) $(R_SHIMS_FILES) $(R_RSTUDIO_THEMES_FILES) $(SSH_FILES) \
 	$(TMUX_FILES) $(VIM_FILES)
 
 all: .all
@@ -55,6 +57,9 @@ all: .all
 $(ALL):
 	$(foreach i, $(shell for i in {1..$(words $@)}; do echo $$i; done),d=$(word $(i), $(@D)); if [ ! -d $$d ]; then mkdir -p $$d; fi;) 
 	$(foreach i, $(shell for i in {1..$(words $@)}; do echo $$i; done),/usr/local/bin/gcp -pu $(word $(i), $(subst $(HOME),.,$@)) $(word $(i), $(@D));)
+
+brew:
+	brew bundle dump --file=~/.Brewlist
 
 symlinks: 
 	ln -fs .tmux/.tmux.conf .tmux.conf
