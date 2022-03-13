@@ -1,5 +1,7 @@
 .PHONY: all brew symlinks constants
 
+BREWPREFIX = $(shell brew --prefix)
+
 DOT = .Brewlist .Renviron .dir_colors .fzf.zsh .gitconfig .tmux.conf.local\
 	.tmux.conf.local.light .vimrc .zlogout .zshrc
 ANACONDA3_ETC_JUPYTER_JUPYTERNOTEBOOKCONFIGD = jupyterlab.json nteract_on_jupyter.json
@@ -47,7 +49,7 @@ all: .all
 # you are entering the GNU make recipe shell - there be dragons
 .all: $(ALL)
 	$(foreach i, $(shell for i in {1..$(words $?)}; do echo $$i; done),d=$(word $(i), $(subst $(HOME),.,$(?D))); if [ ! -d $$d ]; then mkdir -p $$d; fi;) 
-	$(foreach i, $(shell for i in {1..$(words $?)}; do echo $$i; done),/usr/local/bin/gcp -pu $(word $(i), $?) $(word $(i), $(subst $(HOME),.,$(?D)));)
+	$(foreach i, $(shell for i in {1..$(words $?)}; do echo $$i; done),$(BREWPREFIX)/bin/gcp -pu $(word $(i), $?) $(word $(i), $(subst $(HOME),.,$(?D)));)
 	git add .
 	git diff-index --quiet HEAD || git diff-index --name-only HEAD | sed 's/.*/~\/&/' | tr '\n' ' ' | sed -r 's/.*/update &/;s/(.*) /\1/' | git commit -F -
 	git push
@@ -56,7 +58,7 @@ all: .all
 # inception deployment - copy files in repo to server if they don't exist
 $(ALL):
 	$(foreach i, $(shell for i in {1..$(words $@)}; do echo $$i; done),d=$(word $(i), $(@D)); if [ ! -d $$d ]; then mkdir -p $$d; fi;) 
-	$(foreach i, $(shell for i in {1..$(words $@)}; do echo $$i; done),/usr/local/bin/gcp -pu $(word $(i), $(subst $(HOME),.,$@)) $(word $(i), $(@D));)
+	$(foreach i, $(shell for i in {1..$(words $@)}; do echo $$i; done),$(BREWPREFIX)/bin/gcp -pu $(word $(i), $(subst $(HOME),.,$@)) $(word $(i), $(@D));)
 
 brew:
 	brew bundle dump --file=~/.Brewlist
