@@ -2,7 +2,7 @@
 
 BREWPREFIX = $(shell brew --prefix)
 
-DOT = .Brewlist .Renviron .dir_colors .fzf.zsh .gitconfig .tmux.conf.local\
+DOT = .Brewfile .Renviron .dir_colors .fzf.zsh .gitconfig .tmux.conf.local\
 	.tmux.conf.local.light .vimrc .zlogout .zshrc
 ANACONDA3_ETC_JUPYTER_JUPYTERNOTEBOOKCONFIGD = jupyterlab.json nteract_on_jupyter.json
 ANACONDA3_ETC_JUPYTER_NBCONFIG = notebook.json 
@@ -61,7 +61,7 @@ $(ALL):
 	$(foreach i, $(shell for i in {1..$(words $@)}; do echo $$i; done),$(BREWPREFIX)/bin/gcp -pu $(word $(i), $(subst $(HOME),.,$@)) $(word $(i), $(@D));)
 
 brew:
-	brew bundle dump --file=~/.Brewlist
+	brew bundle dump --file=~/.Brewfile
 
 symlinks: 
 	ln -fs .tmux/.tmux.conf .tmux.conf
