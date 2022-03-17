@@ -2,8 +2,8 @@
 
 BREWPREFIX = $(shell brew --prefix)
 
-DOT = .Brewfile .Renviron .dir_colors .fzf.zsh .gitconfig .tmux.conf.local\
-	.tmux.conf.local.light .vimrc .zlogout .zshrc
+DOT = .Brewfile .Brewfile.old .Renviron .dir_colors .fzf.zsh .gitconfig \
+			.tmux.conf.local .tmux.conf.local.light .vimrc .zlogout .zshrc
 ANACONDA3_ETC_JUPYTER_JUPYTERNOTEBOOKCONFIGD = jupyterlab.json nteract_on_jupyter.json
 ANACONDA3_ETC_JUPYTER_NBCONFIG = notebook.json 
 ANACONDA3_ETC_JUPYTER_NBCONFIG_NOTEBOOKD = ipyaggrid.json plotlywidget.json vega.json widgetsnbextension.json
@@ -51,7 +51,7 @@ all: .all
 
 # you are entering the GNU make recipe shell - there be dragons
 
-# inception deployment - copy files in repo to server if they are newer than on server or don't exist
+# inception deployment - copy files in repo to server if they are newer than on server or don't exist on server
 .all &:: $(ALL_REPO)
 	$(foreach i, $(shell for i in {1..$(words $?)}; do echo $$i; done),d=$(word $(i), $(addprefix ~/,$(?D))); if [ ! -d $$d ]; then mkdir -p $$d; fi;) 
 	$(foreach i, $(shell for i in {1..$(words $?)}; do echo $$i; done),$(BREWPREFIX)/bin/gcp -pu $(word $(i), $?) $(word $(i), $(addprefix ~/,$(?D)));)
@@ -66,10 +66,17 @@ all: .all
 	git push
 	touch .all
 
-$(ALL_REPO) $(ALL_SERVER): ;
+# in the case that the files do not exist yet in repo - we can copy them from server
+# this beats determining which .all is ran first - an extra copy
+$(ALL_REPO):
+	$(foreach i, $(shell for i in {1..$(words $@)}; do echo $$i; done),$(BREWPREFIX)/bin/gcp -pu $(word $(i), $(addprefix ~/,$@)) $(word $(i), $(@D));)
+
+$(ALL_SERVER): ;
+
 
 brew:
 	brew bundle dump --file=~/.Brewfile --force
+	brew-old bundle dump --file=~/.Brewfile.old --force
 
 symlinks: 
 	ln -fs .tmux/.tmux.conf .tmux.conf
