@@ -1,6 +1,7 @@
 .PHONY: all brew symlinks constants
 
 BREWPREFIX = $(shell brew --prefix)
+brew-old = /usr/local/bin/brew
 
 DOT = .Brewfile .Brewfile.old .Renviron .dir_colors .fzf.zsh .gitconfig \
 			.tmux.conf.local .tmux.conf.local.light .vimrc .zlogout .zshrc
@@ -73,10 +74,9 @@ $(ALL_REPO):
 
 $(ALL_SERVER): ;
 
-
 brew:
 	brew bundle dump --file=~/.Brewfile --force
-	brew-old bundle dump --file=~/.Brewfile.old --force
+	$(brew-old) bundle dump --file=~/.Brewfile.old --force
 
 symlinks: 
 	ln -fs .tmux/.tmux.conf .tmux.conf
