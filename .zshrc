@@ -10,7 +10,8 @@ if [ -x /usr/libexec/path_helper ]; then
   eval `/usr/libexec/path_helper -s`
 fi
 # Mac Platforms
-if [[ -n $(/usr/sbin/sysctl -n machdep.cpu.brand_string | /usr/bin/grep "Apple") ]]; then
+M1=$(/usr/sbin/sysctl -n machdep.cpu.brand_string | /usr/bin/grep "Apple")
+if [[ -n $M1 ]]; then
   # Homebrew
   eval "$(/opt/homebrew/bin/brew shellenv)"
   alias brew-old=/usr/local/bin/brew
@@ -195,6 +196,9 @@ source $ZSH/oh-my-zsh.sh
 [[ -r $NVM_DIR/bash_completion  ]] && \. $NVM_DIR/bash_completion
 # below is in $NVM_DIR/bash_completion
 autoload -U +X bashcompinit && bashcompinit
+if [ -z $M1 ]; then
+  source /usr/local/etc/bash_completion.d/hugo_fix.sh
+fi
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
