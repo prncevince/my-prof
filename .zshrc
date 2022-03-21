@@ -10,7 +10,7 @@ if [ -x /usr/libexec/path_helper ]; then
   eval `/usr/libexec/path_helper -s`
 fi
 # Mac Platforms
-if [[ $(uname -p) == "arm" || -z "$JUPYTER_SERVER_HOST" ]]; then
+if [[ -n $(/usr/sbin/sysctl -n machdep.cpu.brand_string | /usr/bin/grep "Apple") ]]; then
   # Homebrew
   eval "$(/opt/homebrew/bin/brew shellenv)"
   alias brew-old=/usr/local/bin/brew
@@ -195,7 +195,7 @@ source $ZSH/oh-my-zsh.sh
 [[ -r $NVM_DIR/bash_completion  ]] && \. $NVM_DIR/bash_completion
 # below is in $NVM_DIR/bash_completion
 autoload -U +X bashcompinit && bashcompinit
-# source /usr/local/etc/bash_completion.d/hugo_fix.sh
+source /usr/local/etc/bash_completion.d/hugo_fix.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -250,7 +250,7 @@ alias ta="tmux attach"
 alias tmuxconf="$EDITOR ~/.tmux.conf.local"
 alias tn="tmux -L s2 -f /dev/null new-session -s test"
 alias tk="tmux -L s2 kill-server"
-alias tree="$(brew --prefix)/bin/tree --dirsfirst --du -ahlpCD -I '\.git|\.Rproj\.user|node_modules|renv'"
+alias tree='/usr/local/bin/tree --dirsfirst --du -ahlpCD -I "\.git|\.Rproj\.user|\node_modules"'
 alias nvimconf="$EDITOR ~/.config/nvim/init.vim"
 alias vimconf="$EDITOR ~/.vimrc"
 alias v="$EDITOR ."

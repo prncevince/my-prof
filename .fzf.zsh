@@ -1,13 +1,15 @@
+BREWPREFIX=$(brew --prefix)
+
 # Setup fzf
 # ---------
 if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
+  export PATH="${PATH:+${PATH}:}$BREWPREFIX/opt/fzf/bin"
 fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "$BREWPREFIX/opt/fzf/shell/completion.zsh" 2> /dev/null
 
 # Key bindings
 # ------------
-source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+source "$BREWPREFIX/opt/fzf/shell/key-bindings.zsh"
