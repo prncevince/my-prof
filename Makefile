@@ -3,7 +3,7 @@
 BREWPREFIX = $(shell brew --prefix)
 brew-old = /usr/local/bin/brew
 
-DOT = .Brewfile .Brewfile.old .Renviron .dir_colors .fzf.zsh .gitconfig \
+DOT = .Brewfile .Brewfile.old .Renviron .dir_colors .fzf.zsh \
 			.tmux.conf.local .tmux.conf.local.light .vimrc .zlogout .zshrc
 ANACONDA3_ETC_JUPYTER_JUPYTERNOTEBOOKCONFIGD = jupyterlab.json nteract_on_jupyter.json
 ANACONDA3_ETC_JUPYTER_NBCONFIG = notebook.json 
@@ -17,7 +17,6 @@ JUPYTER_NBCONFIG = notebook.json
 R = Makevars
 R_SHIMS = R.sh Rscript.sh rstudio.sh README.md
 R_RSTUDIO_THEMES = night-owlish.rstheme
-SSH = config
 TMUX = .tmux.conf .tmux.conf.local README.md
 VIM = coc-settings.json
 
@@ -34,7 +33,6 @@ JUPYTER_NBCONFIG_FILES = $(addprefix .jupyter/nbconfig/,$(JUPYTER_NBCONFIG))
 R_FILES = $(addprefix .R/,$(R))
 R_SHIMS_FILES = $(addprefix .R/shims/,$(R_SHIMS))
 R_RSTUDIO_THEMES_FILES = $(addprefix .R/rstudio/themes/,$(R_RSTUDIO_THEMES))
-SSH_FILES = $(addprefix .ssh/,$(SSH)) 
 TMUX_FILES = $(addprefix .tmux/,$(TMUX))
 VIM_FILES = $(addprefix .vim/,$(VIM))
 
