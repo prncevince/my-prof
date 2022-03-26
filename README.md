@@ -1,6 +1,6 @@
 # My Profile
 
-To be installed on a new MacOS ... or one retored from OS with all the installs already.
+To be installed on a new MacOS ... or one restored from OS with all the installs already.
 
 Can help you mirror between multiple MacOS machines.
 
