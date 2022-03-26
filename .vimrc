@@ -58,6 +58,7 @@ let g:coc_global_extensions = [
   \ 'coc-json', 
   \ 'coc-marketplace',
   \ 'coc-r-lsp',  
+  \ 'coc-pyright',
   \ 'coc-tsserver'
   \ ]
 " GoTo code navigation.

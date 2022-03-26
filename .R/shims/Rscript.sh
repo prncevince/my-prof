@@ -11,7 +11,7 @@ if [ -f .Rversion ]; then
       ver_arm=$(echo "$rpaths" | /usr/bin/grep "arm")
     fi
     if [[ "$arm" == 1 && -n "$ver_arm" ]]; then
-      export R_HOME="$rpath"/"$ver"-arm64/Resources
+      export R_HOME="$rpath"/"$ver_arm"/Resources
     else
       export R_HOME="$rpath"/"$ver"/Resources
     fi
