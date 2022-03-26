@@ -12,6 +12,7 @@ Can help you mirror between multiple MacOS machines.
 - [R](https://cran.r-project.org/bin/macosx/)
   - [Configure for r-shims](https://github.com/prncevince/r-shims#mac-1)
 - [zsh-nvm](https://github.com/lukechilds/zsh-nvm#as-an-oh-my-zsh-custom-plugin)
+- [vim-plug](https://github.com/junegunn/vim-plug#vim)
 - [Homebrew](https://docs.brew.sh/Installation)
 
 ## 'Auto' Installs
