@@ -4,7 +4,7 @@ To be installed on a new MacOS ... or one restored from OS with all the installs
 
 Can help you mirror between multiple MacOS machines.
 
-## 'Manual' Installs:
+## 'Manual' Installs
 
 - [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh#basic-installation)
 - [Anaconda](https://docs.anaconda.com/anaconda/install/mac-os/#using-the-command-line-install)
