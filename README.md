@@ -1,6 +1,7 @@
 # My Profile
 
 To be installed on a new MacOS ... or one retored from OS with all the installs already.
+
 Can help you mirror between multiple MacOS machines.
 
 ## 'Manual' Installs:
@@ -16,7 +17,7 @@ Can help you mirror between multiple MacOS machines.
 ## 'Auto' Installs
 
 ```
-git clone https://github.com/prncevince/my-prof.git
+git clone https://github.com/prncevince/my-prof.git && cd my-prof
 make
 brew bundle --global
 ```
