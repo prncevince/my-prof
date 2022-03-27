@@ -52,6 +52,7 @@ call plug#end()
 " uses R on top of path - works with prncevince/r-shims :)
 " uses languageserver R package, which lints with lintr, and can use styler
 " you can still fix code using ALE with styler
+" for new R installs - run install.packages(c('languageserver', 'styler', 'lintr'))
 let g:coc_global_extensions = [
   \ 'coc-css', 
   \ 'coc-html',
