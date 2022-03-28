@@ -222,10 +222,6 @@ fi
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-## PRIVATE VARIABLES ##
-# No one needs to see these 
-source ~/.private
-
 ##  ALIASES ##
 alias cocconf="$EDITOR ~/.config/nvim/coc-settings.json"
 alias color="eval \`gdircolors -b ~/.dir_colors\`"

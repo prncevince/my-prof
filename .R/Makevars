@@ -1,4 +1,21 @@
+# brew install libomp option
 # CC=clang
 # CXX=clang++
-CPPFLAGS += -Xclang -fopenmp
-LDFLAGS += -L/opt/homebrew/opt/libomp/lib -lomp
+#CPPFLAGS += -Xclang -fopenmp
+#LDFLAGS += -L/opt/homebrew/opt/libomp/lib -lomp
+# LDFLAGS += -lomp
+
+# brew install llvm option
+# Newly installed Homebrew is located in
+#  - /opt/homebrew for ARM Macs (M1 and its successors)
+#  - /usr/local for Intel Macs
+HOMEBREW_LOC=/opt/homebrew
+# If you downloaded llvm manually above, replace with your chosen NEW_PATH/clang
+LLVM_LOC=$(HOMEBREW_LOC)/opt/llvm
+CC=$(LLVM_LOC)/bin/clang -fopenmp
+CXX=$(LLVM_LOC)/bin/clang++ -fopenmp
+# -O3 should be faster than -O2 (default) level optimisation ..
+CFLAGS=-g -O3 -Wall -pedantic -std=gnu99 -mtune=native -pipe
+CXXFLAGS=-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe
+LDFLAGS=-L$(HOMEBREW_LOC)/opt/gettext/lib -L$(LLVM_LOC)/lib -Wl,-rpath,$(LLVM_LOC)/lib
+CPPFLAGS=-I$(HOMEBREW_LOC)/opt/gettext/include -I$(LLVM_LOC)/include
