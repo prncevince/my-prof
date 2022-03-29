@@ -52,7 +52,7 @@ eval "$(starship init zsh)"
 
 # conda script & default Conda prompt
 . $HOME/anaconda3/etc/profile.d/conda.sh
-if [[ "$ZSH_THEME" = "spaceship" ]]; then
+if [[ "$ZSH_THEME" = "spaceship" || -n "$STARSHIP_SHELL" ]]; then
   conda config --set changeps1 False
 else 
   conda config --set changeps1 True
