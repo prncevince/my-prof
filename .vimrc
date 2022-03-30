@@ -62,6 +62,8 @@ let g:coc_global_extensions = [
   \ 'coc-r-lsp',  
   \ 'coc-tsserver'
   \ ]
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocActionAsync('format')
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 " Use K to show documentation in preview window
