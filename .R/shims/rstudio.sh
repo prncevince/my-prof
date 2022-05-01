@@ -22,5 +22,8 @@ if [ -f .Rversion ]; then
     fi
   fi
 fi
-(/usr/bin/open -na Rstudio . &) 
-
+if [ -f *.Rproj ]; then 
+  /usr/bin/open -na RStudio *.Rproj
+else 
+  ("/Applications/RStudio.app/Contents/MacOS/RStudio" &)
+fi
