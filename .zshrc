@@ -165,7 +165,7 @@ plugins=(
 	npm
 	zsh-nvm
   # pyenv # does a lot - see https://github.com/pyenv/pyenv#advanced-configuration
-  pipenv
+  pipenv # auto spawns virtualenv shell in directories with Pipfile - uses pyenv - https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pipenv
   poetry
   #nvm
   tmux
