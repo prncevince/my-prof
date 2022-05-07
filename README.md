@@ -11,6 +11,10 @@ Can help you mirror between multiple MacOS machines.
 - [RStudio](https://www.rstudio.com/products/rstudio/download/#download)
 - [R](https://cran.r-project.org/bin/macosx/)
   - [Configure for r-shims](https://github.com/prncevince/r-shims#mac-1)
+  - Configure for [coc.nvim](https://github.com/neoclide/coc.nvim)'s [coc-r-lsp](https://github.com/neoclide/coc-r-lsp) plugin & as well as vim's ALE plugin. See `""" LANGUAGE """` in [.vimrc](.vimrc)
+    - `r install.packages(c('languageserver', 'styler', 'lintr'))`
+  - Configure for RStudio in `renv` environments:
+    - `r install.packages('rstudioapi')`
 - [zsh-nvm](https://github.com/lukechilds/zsh-nvm#as-an-oh-my-zsh-custom-plugin)
 - [vim-plug](https://github.com/junegunn/vim-plug#vim)
 - [Docker](https://docs.docker.com/desktop/mac/install/)
