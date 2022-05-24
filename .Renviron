@@ -1,5 +1,5 @@
 ### RStudio Variables ###
-RSTUDIO_PANDOC=/usr/local/bin
+RSTUDIO_PANDOC=/opt/homebrew/bin
 
 ### User Library ###
 # Some part of the mac R installaton seems to set this by default nowadays 
