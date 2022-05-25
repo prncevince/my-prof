@@ -225,6 +225,7 @@ fi
 ##  ALIASES ##
 alias cocconf="$EDITOR ~/.config/nvim/coc-settings.json"
 alias color="eval \`gdircolors -b ~/.dir_colors\`"
+alias cp="$(brew --prefix)/bin/gcp"
 alias du="/usr/bin/du -sh -- *"
 alias duh="/usr/bin/du -sh -- * .*"
 # Show the diff between latest stash and local working tree
