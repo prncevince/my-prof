@@ -21,6 +21,7 @@ Some conversation for handling the use of different versions of R stemmed from b
 
 Some other projects that handle this:
 
+- [rig - The R Installation Manager](https://github.com/r-lib/rig)
 - [rcli](https://rcli.pat-s.me/)
 - [renv / renv-installer](https://github.com/jcrodriguez1989/renv-installer) utility (not R package), which stems from [pyenv](https://github.com/pyenv/pyenv)
 - [RSwitch](https://rud.is/rswitch/) for macOS - GUI and CLI utility

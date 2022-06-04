@@ -39,6 +39,8 @@ export PATH="$HOME/.R/shims:$PATH"
 # SLOW! call `nvm use` automatically in directory with .nvmrc
 # source ~/.nvm.use
 # export NVM_AUTO_USE=true
+
+### SHELL FRAMEWORK OHMYZSH ### 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -48,6 +50,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="spaceship"
+
+### PROMPT FRAMEWORKS ###
 eval "$(starship init zsh)"
 
 # conda script & default Conda prompt
@@ -186,7 +190,9 @@ fi
 # Oh My Zsh
 source $ZSH/oh-my-zsh.sh
 
-### User configuration ###
+### AUTOCOMPLETION ###
+#
+# Note: section must occur after sourcing Oh My Zsh 
 #
 # Bash completion for non-zsh compatible completion
 #if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -197,8 +203,14 @@ source $ZSH/oh-my-zsh.sh
 # below is in $NVM_DIR/bash_completion
 autoload -U +X bashcompinit && bashcompinit
 if [ -z $M1 ]; then
+  # hugo completion
   source /usr/local/etc/bash_completion.d/hugo_fix.sh
 fi
+# pipx
+eval "$(register-python-argcomplete pipx)"
+# pipenv 
+eval "$(_PIPENV_COMPLETE=zsh_source pipenv)"
+
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
