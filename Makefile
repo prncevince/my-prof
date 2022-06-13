@@ -3,7 +3,7 @@
 BREWPREFIX = $(shell brew --prefix)
 brew-old = /usr/local/bin/brew
 
-DOT = .Brewfile .Brewfile.old .Renviron .dir_colors .fzf.zsh \
+DOT = .Brewfile .Brewfile.old .Renviron .Rprofile .dir_colors .fzf.zsh \
 			.tmux.conf.local .tmux.conf.local.light .vimrc .zlogout .zshrc
 ANACONDA3_ETC_JUPYTER_JUPYTERNOTEBOOKCONFIGD = jupyterlab.json nteract_on_jupyter.json
 ANACONDA3_ETC_JUPYTER_NBCONFIG = notebook.json 
