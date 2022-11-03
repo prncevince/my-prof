@@ -308,6 +308,7 @@ set -g display-time 0
 # makes prefix n & prefix p work to cycle through tabs
 bind-key n next-window
 bind-key p previous-window
+bind-key t choose-tree
 
 # List of plugins
 # examples:
