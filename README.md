@@ -27,3 +27,23 @@ git clone https://github.com/prncevince/my-prof.git && cd my-prof
 make
 brew bundle --global
 ```
+
+## Troubleshooting
+
+### Hombrew Auto-Updates
+
+Scenario: Hombrew runs `brew update --preinstall` and everything seems to break after ~15 minutes of installs.
+
+If the `pipx` python utilities are dysfunctional due to a brew installation of python, reinstall them:
+
+```
+pipx reinstall-all
+```
+
+If your tmux session seems to be broken, kill the tmux server:
+
+```
+tksv 
+# or 
+tmux kill-server
+```

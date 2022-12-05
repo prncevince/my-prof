@@ -1,3 +1,4 @@
+export HOMEBREW_NO_AUTO_UPDATE=1
 # zsh Options
 # removes error on pattern match globs that don't match
 # unsetopt nomatch
@@ -165,16 +166,16 @@ plugins=(
   docker-compose #aliases & completion
   docker-machine #aliases & completion
   git
-	golang
-	npm
-	zsh-nvm
+  golang
+  npm
+  zsh-nvm
   # pyenv # does a lot - see https://github.com/pyenv/pyenv#advanced-configuration
   pipenv # auto spawns virtualenv shell in directories with Pipfile - uses pyenv - https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pipenv
   poetry
   #nvm
   tmux
   vi-mode
-	zsh-autosuggestions
+  zsh-autosuggestions
 )
 
 # To make Homebrew’s completions available in zsh, 
@@ -405,7 +406,7 @@ bindkey '^[[1;3D' backward-word
 # In addition, tmux inherits & continually resets the SSH_AUTH_SOCK from the parent environment value
 # Thus, the PID may only be set correctly in the parent process, so closing out of iTerm shuts down the ssh-agent 
 if [ -z "$SSH_AUTH_SOCK" ] ; then
-	eval `/usr/bin/ssh-agent -s`
+  eval `/usr/bin/ssh-agent -s`
   export SSH_AUTH_SOCK=$(launchctl getenv SSH_AUTH_SOCK)
   /usr/bin/ssh-add -l > /dev/null 2>&1
   export SSH_AGENT_PID=$(launchctl list | grep com.openssh.ssh-agent | awk '{print $1;}')

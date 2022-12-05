@@ -171,6 +171,9 @@ augroup filetypedetect
 augroup END
 
 """ FUNCTIONALITY """
+" Scrolling with mouse
+map <ScrollWheelDown> j
+map <ScrollWheelUp> k
 " FZF Fuzzy Find
 " To use fzf in Vim, add the following line to your .vimrc:
 set rtp+=/usr/local/opt/fzf
