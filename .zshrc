@@ -1,5 +1,4 @@
-export HOMEBREW_NO_AUTO_UPDATE=1
-# zsh Options
+### zsh Options ###
 # removes error on pattern match globs that don't match
 # unsetopt nomatch
 
@@ -304,6 +303,8 @@ function theme() {
 test -r ~/.dir_colors && eval `gdircolors -b ~/.dir_colors`
 
 ## ENVIRONMENT VARIABLES ##
+# homebrew death - stops homebrew from auto updating all software (which potentially breaks a lot of things)
+export HOMEBREW_NO_AUTO_UPDATE=1
 # zsh history
 export HISTSIZE=1000000
 export SAVEHIST=$HISTSIZE
