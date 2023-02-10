@@ -24,10 +24,10 @@ export PATH="$(brew --prefix)/opt/python@3/libexec/bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
 # pipenv uses pyenv - but pyenv does not use pipenv :)
 # pynev-virtualenv is the virutalenv plugin for pyenv 
-# all of these need to be ran
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# below is ran in non-interactive sessions
+# eval "$(pyenv init --path)"
+eval "$(pyenv init - --no-rehash)"
+eval "$(pyenv virtualenv-init - --no-rehash)"
 # pyenv - handles configuring pyenv - from the plugin magic :)
 export PYENV_ROOT="$(pyenv root)"
 # Quarto
@@ -221,9 +221,9 @@ eval "$(_PIPENV_COMPLETE=zsh_source pipenv)"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
+  export EDITOR='vim'
 else
-  export EDITOR='nvim'
+  export EDITOR='vim'
 fi
 
 # Compilation flags
