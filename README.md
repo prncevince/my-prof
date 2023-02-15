@@ -17,16 +17,30 @@ Can help you mirror between multiple MacOS machines.
     - `install.packages('rstudioapi')`
 - [zsh-nvm](https://github.com/lukechilds/zsh-nvm#as-an-oh-my-zsh-custom-plugin)
 - [vim-plug](https://github.com/junegunn/vim-plug#vim)
+- [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm#installation)
 - [Docker](https://docs.docker.com/desktop/mac/install/)
 - [Homebrew](https://docs.brew.sh/Installation)
 
 ## 'Auto' Installs
 
 ```
+export HOMEBREW_NO_AUTO_UPDATE=1
+brew install coreutils make
+```
+
+```
 git clone https://github.com/prncevince/my-prof.git && cd my-prof
 make
 brew bundle --global
 ```
+
+### Vim Plugins
+
+Run `:PlugInstall`
+
+### Tmux Plugins
+
+Run `prefix I`
 
 ## Troubleshooting
 
