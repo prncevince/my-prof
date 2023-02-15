@@ -42,6 +42,21 @@ Run `:PlugInstall`
 
 Run `prefix I`
 
+### Jupyter Lab
+
+To be able to use virtual environments within Python. See [Using Jupyter Notebook Extensions](https://docs.continuum.io/anaconda/user-guide/tasks/use-jupyter-notebook-extensions/)
+
+Note, Anaconda is monolithic, so it's probably best to create a new environment to manage your [JupyterLab installation](jupyter.org/install). 
+
+Make sure to activate the environment that you install JupyterLab into when you use it to run other virtual environments. 
+
+```
+# if you're lucky
+conda install -n base nb_conda
+# a smarter move
+conda create -n nb_conda -c conda-forge nb_conda jupyterlab 
+```
+
 ## Troubleshooting
 
 ### Hombrew Auto-Updates
