@@ -50,11 +50,13 @@ Note, Anaconda is monolithic, so it's probably best to create a new environment 
 
 Make sure to activate the environment that you install JupyterLab into when you use it to run other virtual environments. 
 
+In addition, the JupyterLab plotly extension *must* be installed into the same environment as JupyterLab, so a plotly install can [take care of this](https://plotly.com/python/troubleshooting/#jupyterlab-problems). 
+
 ```
 # if you're lucky
-conda install -n base nb_conda
+conda install -n base nb_conda plotly
 # a smarter move
-conda create -n nb_conda -c conda-forge nb_conda jupyterlab 
+conda create -n nb_conda -c conda-forge nb_conda jupyterlab plotly
 ```
 
 ## Troubleshooting
