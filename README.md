@@ -52,11 +52,23 @@ Make sure to activate the environment that you install JupyterLab into when you 
 
 In addition, the JupyterLab plotly extension *must* be installed into the same environment as JupyterLab, so a plotly install can [take care of this](https://plotly.com/python/troubleshooting/#jupyterlab-problems). 
 
+If you'd like Math TeX docstring rendered, you can [install the `docrepr` package](https://blog.jupyter.org/inspector-jupyterlab-404cce3e1df6) within the activated environment & cofigure it for interactive sessions. Your mileage may vary, but `SHIFT+TAB` is typically more reliant than `⌘+I` & the Contextual Pane for parsing docstring.
+
 ```
 # if you're lucky
 conda install -n base nb_conda plotly
 # a smarter move
-conda create -n nb_conda -c conda-forge nb_conda jupyterlab plotly
+conda create -n nb_conda -c conda-forge nb_conda jupyterlab plotly 
+# to get html parsed docstring for myenv - downloads sphinx dependent utilites
+conda install -n myenv docrepr 
+```
+
+Within interactive JupyterLab session:
+
+```python
+ip = get_ipython()
+ip.sphinxify_docstring = True
+ip.enable_html_pager = True
 ```
 
 ## Troubleshooting
