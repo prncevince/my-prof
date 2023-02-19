@@ -340,6 +340,8 @@ tmux_conf_theme_status_right="$tmux_conf_theme_status_right | $save_mins $contin
 
 set -g update-environment "DISPLAY KRB5CCNAM SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION WINDOWID XAUTHORITY ITERM_PROFILE LIGHTS"
 
+# allow vim colorscheme to work as expected
+set -g default-terminal "xterm-256color"
 # light color theme - dependent on ~/.zshrc for environment variables
 if -b 'test #{m:#{ITERM_PROFILE},#{LIGHTS}} != 0' 'source ~/.tmux.conf.local.light' 
 # tmux if-shell does not work with [] syntax? ... or in general?

@@ -2,7 +2,8 @@
 call plug#begin('~/.vim/plugged')
 " Declare the list of plugins.
 Plug 'tpope/vim-sensible'
-Plug 'junegunn/seoul256.vim'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin', 'on': 'main' }
+" Plug 'junegunn/seoul256.vim'
 " Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -12,9 +13,9 @@ Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
 Plug 'chrisbra/Colorizer'
-Plug 'file://'.expand('~/.vim/plugged/vimawesome')
+" Plug 'file://'.expand('~/.vim/plugged/vimawesome')
 Plug 'christoomey/vim-tmux-navigator'
-" below is not working in vim 8.1
+"" below is not working in vim 8.1
 Plug 'yggdroot/indentline'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tomtom/tcomment_vim'
@@ -62,7 +63,7 @@ let g:coc_global_extensions = [
   \ 'coc-r-lsp',  
   \ 'coc-tsserver'
   \ ]
-" Add `:Format` command to format current buffer.
+"" Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocActionAsync('format')
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -163,15 +164,15 @@ let g:ale_pattern_options = {
 \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
 \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
 \}
-" Go - vim-go plugin 
-function DetectGoHtmlTmpl()
-    if expand('%:e') == "html" && search("{{") != 0
-        set filetype=gohtmltmpl 
-    endif
-endfunction
-augroup filetypedetect
-    au! BufRead,BufNewFile * call DetectGoHtmlTmpl()
-augroup END
+"" Go - vim-go plugin 
+"function DetectGoHtmlTmpl()
+"    if expand('%:e') == "html" && search("{{") != 0
+"        set filetype=gohtmltmpl 
+"    endif
+"endfunction
+"augroup filetypedetect
+"    au! BufRead,BufNewFile * call DetectGoHtmlTmpl()
+"augroup END
 
 """ FUNCTIONALITY """
 " Scrolling with mouse
@@ -207,7 +208,8 @@ endif
 let g:airline_powerline_fonts = 1
 let g:airline_symbols = get(g:,'airline_symbols',{})
 let g:airline_symbols["dirty"] = '!'
-let g:airline_theme='vince'
+"let g:airline_theme='vince'
+"let g:airline_theme='catppuccin'
 " GIT
 " gitgutter plugin
 set updatetime=250
@@ -312,16 +314,18 @@ let g:colorizer_auto_filetype='css,html'
 "   Range:   233 (darkest) ~ 239 (lightest)
 "   Default: 237
 "LAST USED --v
-set cursorline 
+"set cursorline 
+"colorscheme catppuccin
 if match([$ITERM_PROFILE], "Nord")+1
-  let g:seoul256_background = 233
-  colo seoul256
-  hi CocFloating ctermfg=252 ctermbg=235 guifg=#D9D9D9 guibg=#333233
-  hi CursorLine ctermbg=235 "ctermfg=0 guifg=#060606 guibg=#060606
+  colorscheme catppuccin
+"  " let g:seoul256_background = 233
+"  " colo seoul256
+"  " hi CocFloating ctermfg=252 ctermbg=235 guifg=#D9D9D9 guibg=#333233
+"  " hi CursorLine ctermbg=235 "ctermfg=0 guifg=#060606 guibg=#060606
 endif
-if match([$ITERM_PROFILE], "Outside")+1
-  colo seoul256-light
-endif
+"if match([$ITERM_PROFILE], "Outside")+1
+"  colo seoul256-light
+"endif
 
 " seoul256 (light):
 "   Range:   252 (darkest) ~ 256 (lightest)

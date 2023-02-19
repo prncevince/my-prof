@@ -1,9 +1,14 @@
 " uses .vimrc 
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
+"call plug#begin('~/.vim/plugged')
+"Plug 'catppuccin/nvim', { 'as': 'catppuccin', 'on': 'main' }
+"call plug#end()
 source ~/.vimrc
+lua require('init')
 " resource init.vim on save
 autocmd BufWritePost $MYVIMRC source %
+"lua require('$HOME/.config/nvim/init.lua')
 
 " alias
 "command! "conf" "e $NVIMINIT" 
