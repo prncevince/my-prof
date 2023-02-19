@@ -25,7 +25,7 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-vinegar'
 Plug 'romainl/vim-cool'
 Plug 'dense-analysis/ale' 
-Plug 'jalvesaq/Nvim-R/'
+"Plug 'jalvesaq/Nvim-R/'
 Plug 'tpope/vim-unimpaired' 
 Plug 'terryma/vim-multiple-cursors'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }

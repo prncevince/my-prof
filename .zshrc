@@ -31,7 +31,7 @@ eval "$(pyenv virtualenv-init - --no-rehash)"
 # pyenv - handles configuring pyenv - from the plugin magic :)
 export PYENV_ROOT="$(pyenv root)"
 # Quarto
-export PATH="$PATH:/Applications/RStudio.app/Contents/Resources/app/quarto/bin"
+export PATH="$HOME/.quarto/shims:$PATH"
 # R / RStudio
 export PATH="$HOME/.R/shims:$PATH"
 # Anaconda - see ZSH_THEME below

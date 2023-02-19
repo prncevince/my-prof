@@ -14,6 +14,7 @@ CONFIG_NVIM = init.vim coc-settings.json
 CONFIG_YARN_GLOBAL = package.json yarn.lock
 JUPYTER_LAB_USER-SETTINGS_@JUPYTERLAB_SHORTCUTS-EXTENSION = shortcuts.jupyterlab-settings
 JUPYTER_NBCONFIG = notebook.json
+QUARTO_SHIMS = quarto.sh 
 R = Makevars
 R_SHIMS = R.sh Rscript.sh rstudio.sh README.md
 R_RSTUDIO_THEMES = night-owlish.rstheme
@@ -31,6 +32,7 @@ CONFIG_NVIM_FILES = $(addprefix .config/nvim/,$(CONFIG_NVIM))
 CONFIG_YARN_GLOBAL_FILES = $(addprefix .config/yarn/global/,$(CONFIG_YARN_GLOBAL))
 JUPYTER_LAB_USER-SETTINGS_@JUPYTERLAB_SHORTCUTS-EXTENSION_FILES = $(addprefix .jupyter/lab/user-settings/@jupyterlab/shortcuts-extension/,$(JUPYTER_LAB_USER-SETTINGS_@JUPYTERLAB_SHORTCUTS-EXTENSION))
 JUPYTER_NBCONFIG_FILES = $(addprefix .jupyter/nbconfig/,$(JUPYTER_NBCONFIG))
+QUARTO_SHIMS_FILES = $(addprefix .quarto/shims/,$(QUARTO_SHIMS))
 R_FILES = $(addprefix .R/,$(R))
 R_SHIMS_FILES = $(addprefix .R/shims/,$(R_SHIMS))
 R_RSTUDIO_THEMES_FILES = $(addprefix .R/rstudio/themes/,$(R_RSTUDIO_THEMES))
@@ -43,7 +45,7 @@ ALL_REPO = $(DOT_FILES) \
 	$(ANACONDA3_ETC_JUPYTER_NBCONFIG_NOTEBOOKD_FILES) $(ANACONDA3_SHARE_JUPYTER_LAB_SETTINGS_FILES) \
 	$(CONFIG_FILES) $(CONFIG_NVIM_FILES) $(CONFIG_YARN_GLOBAL_FILES) \
 	$(JUPYTER_LAB_USER-SETTINGS_@JUPYTERLAB_SHORTCUTS-EXTENSION_FILES) \
-	$(JUPYTER_NBCONFIG_FILES) $(R_FILES) $(R_SHIMS_FILES) $(R_RSTUDIO_THEMES_FILES) \
+	$(JUPYTER_NBCONFIG_FILES) $(QUARTO_SHIMS_FILES) $(R_FILES) $(R_SHIMS_FILES) $(R_RSTUDIO_THEMES_FILES) \
 	$(TMUX_FILES) $(VIM_FILES) $(VIM_PLUGGED_VIM-AIRLINE-THEMES_AUTOLOAD_AIRLINE_THEMES_FILES)
 
 ALL_SERVER = $(addprefix ~/,$(ALL_REPO))
@@ -83,6 +85,7 @@ symlinks:
 	ln -fs .R/shims/R.sh .R/shims/R
 	ln -fs .R/shims/Rscript.sh .R/shims/Rscript
 	ln -fs .R/shims/rstudio.sh .R/shims/rstudio
+	ln -fs .quarto/shims/quarto.sh .quarto/shims/quarto
 
 constants:
 	cp ~/.condarc ./
