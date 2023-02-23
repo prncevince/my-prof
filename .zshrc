@@ -363,7 +363,7 @@ ff() {
 fif() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
   local file
-  file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages --hidden --iglob '!.git|!node_modules|!.Rproj.user' "$@" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$1"' {}")" || return 0
+  file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages --hidden --iglob '!.git' --iglob '!node_modules' --iglob '!.Rproj.user' "$@" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$1"' {}")" || return 0
   if [ -n "$VIM" ]; then
     if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
       nvr --remote-send "<C-\><C-N>:vsp $file<CR>"
@@ -400,7 +400,8 @@ bindkey '^[[1;3C' forward-word
 bindkey '^[[1;3D' backward-word
 
 ## SCRIPTS ##
-
+# STUFF #
+. ~/.private.sh
 ## SERVERS ##
 # SSH Agent #
 #
