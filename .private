@@ -1,3 +1,0 @@
-## PRIVATE CONFIGURATION ##
-PIP_CONFIG_FILE=$HOME/.config/pip/pip.conf
-
