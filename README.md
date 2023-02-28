@@ -7,7 +7,6 @@ Can help you mirror between multiple MacOS machines.
 ## 'Manual' Installs
 
 - [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh#basic-installation)
-- [Anaconda](https://docs.anaconda.com/anaconda/install/mac-os/#using-the-command-line-install)
 - [RStudio](https://www.rstudio.com/products/rstudio/download/#download)
 - [R](https://cran.r-project.org/bin/macosx/)
   - [Configure for r-shims](https://github.com/prncevince/r-shims#mac-1)
@@ -18,7 +17,6 @@ Can help you mirror between multiple MacOS machines.
 - [zsh-nvm](https://github.com/lukechilds/zsh-nvm#as-an-oh-my-zsh-custom-plugin)
 - [vim-plug](https://github.com/junegunn/vim-plug#vim)
 - [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm#installation)
-- [Docker](https://docs.docker.com/desktop/mac/install/)
 - [Homebrew](https://docs.brew.sh/Installation)
 
 ## 'Auto' Installs
@@ -42,6 +40,12 @@ Run `:PlugInstall`
 
 Run `prefix I`
 
+### Miniconda (aka Miniforge w/ Mamba)
+
+Instead of Anaconda / Conda, we can install a version of [Miniforge](https://github.com/conda-forge/miniforge) with Mamba. Mamba has faster dependency resolution. 
+
+We can do this using a Homebrew cask. There should be one in the `~/.Brewfile`. If `miniforge` is installed, then we also need to perform a `conda install -n base mamba`.
+
 ### Jupyter Lab
 
 To be able to use virtual environments within Python. See [Using Jupyter Notebook Extensions](https://docs.continuum.io/anaconda/user-guide/tasks/use-jupyter-notebook-extensions/)
@@ -58,7 +62,7 @@ If you'd like Math TeX docstring rendered, you can [install the `docrepr` packag
 # if you're lucky
 conda install -n base nb_conda plotly
 # a smarter move
-conda create -n nb_conda -c conda-forge nb_conda jupyterlab plotly 
+conda create -n juplab -c conda-forge nb_conda jupyterlab plotly 
 # to get html parsed docstring for myenv - downloads sphinx dependent utilites
 conda install -n myenv docrepr 
 ```
