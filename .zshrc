@@ -59,7 +59,9 @@ export ZSH="$HOME/.oh-my-zsh"
 eval "$(starship init zsh)"
 
 # conda script & default Conda prompt
-. $HOME/anaconda3/etc/profile.d/conda.sh
+# . $HOME/anaconda3/etc/profile.d/conda.sh
+. $HOMEBREW_PREFIX/Caskroom/miniforge/base/etc/profile.d/conda.sh
+. $HOMEBREW_PREFIX/Caskroom/miniforge/base/etc/profile.d/mamba.sh
 if [[ "$ZSH_THEME" = "spaceship" || -n "$STARSHIP_SHELL" ]]; then
   conda config --set changeps1 False
 else 
@@ -366,7 +368,7 @@ ff() {
 fif() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
   local file
-  file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages --hidden --iglob '!.git' --iglob '!node_modules' --iglob '!.Rproj.user' "$@" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$1"' {}")" || return 0
+  file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages --hidden --iglob '!.git|!node_modules|!.Rproj.user' "$@" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$1"' {}")" || return 0
   if [ -n "$VIM" ]; then
     if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
       nvr --remote-send "<C-\><C-N>:vsp $file<CR>"
