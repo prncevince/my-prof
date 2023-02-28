@@ -16,6 +16,8 @@ if [[ -n $M1 ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
   alias brew-old=/usr/local/bin/brew
 fi
+# Docker
+export PATH="$HOME/.docker/bin:$PATH"
 # Go
 export PATH=$PATH:${GOPATH//://bin:}/bin
 # Python - Homebrew
@@ -165,7 +167,6 @@ plugins=(
   brew
   docker #completion 
   docker-compose #aliases & completion
-  docker-machine #aliases & completion
   git
   golang
   npm
@@ -240,6 +241,8 @@ fi
 alias cocconf="$EDITOR ~/.config/nvim/coc-settings.json"
 alias color="eval \`gdircolors -b ~/.dir_colors\`"
 alias cp="$(brew --prefix)/bin/gcp"
+alias docker-up="open -a Docker"
+alias docker-stop="pkill -SIGHUP -f /Applications/Docker.app 'docker serve' com.docker.vpnkit com.docker.dev-envs"
 alias du="/usr/bin/du -sh -- *"
 alias duh="/usr/bin/du -sh -- * .*"
 # Show the diff between latest stash and local working tree
