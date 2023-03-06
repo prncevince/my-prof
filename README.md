@@ -9,11 +9,14 @@ Can help you mirror between multiple MacOS machines.
 - [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh#basic-installation)
 - [RStudio](https://www.rstudio.com/products/rstudio/download/#download)
 - [R](https://cran.r-project.org/bin/macosx/)
+  - One swing: `install.packages(c('languageserver', 'styler', 'lintr', 'rstudioapi', 'rprojroot'))` 
   - [Configure for r-shims](https://github.com/prncevince/r-shims#mac-1)
   - Configure for [coc.nvim](https://github.com/neoclide/coc.nvim)'s [coc-r-lsp](https://github.com/neoclide/coc-r-lsp) plugin & as well as vim's ALE plugin. See `""" LANGUAGE """` in [.vimrc](.vimrc)
     - `install.packages(c('languageserver', 'styler', 'lintr'))`
   - Configure for RStudio in [{renv}](https://rstudio.github.io/renv/index.html) environments:
     - `install.packages('rstudioapi')`
+  - [Configre for quarto-shims](https://github.com/prncevince/quarto-shims)
+    - `install.packages('rprojroot')`
 - [zsh-nvm](https://github.com/lukechilds/zsh-nvm#as-an-oh-my-zsh-custom-plugin)
 - [vim-plug](https://github.com/junegunn/vim-plug#vim)
 - [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm#installation)
@@ -44,7 +47,7 @@ Run `prefix I`
 
 Instead of Anaconda / Conda, we can install a version of [Miniforge](https://github.com/conda-forge/miniforge) with Mamba. Mamba has faster dependency resolution. 
 
-We can do this using a Homebrew cask. There should be one in the `~/.Brewfile`. If `miniforge` is installed, then we also need to perform a `conda install -n base mamba`.
+We can do this using a Homebrew cask, e.g. `brew install miniforge` or `brew install mambaforge`. There should be one in the `~/.Brewfile`. If `miniforge` is installed, then we also need to perform a `conda install -n base mamba`.
 
 ### Jupyter Lab
 
