@@ -15,7 +15,7 @@ Can help you mirror between multiple MacOS machines.
     - `install.packages(c('languageserver', 'styler', 'lintr'))`
   - Configure for RStudio in [{renv}](https://rstudio.github.io/renv/index.html) environments:
     - `install.packages('rstudioapi')`
-  - [Configre for quarto-shims](https://github.com/prncevince/quarto-shims)
+  - [Configure for quarto-shims](https://github.com/prncevince/quarto-shims)
     - `install.packages('rprojroot')`
 - [zsh-nvm](https://github.com/lukechilds/zsh-nvm#as-an-oh-my-zsh-custom-plugin)
 - [vim-plug](https://github.com/junegunn/vim-plug#vim)

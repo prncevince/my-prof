@@ -1,0 +1,11 @@
+{
+    "security.workspace.trust.untrustedFiles": "open",
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "terminal.external.osxExec": "iTerm.app",
+    "application.shellEnvironmentResolutionTimeout": 15,
+    //"python.terminal.launchArgs": [],
+    //"python.terminal.activateEnvironment": true,
+    //"python.condaPath": "/opt/homebrew/Caskroom/miniforge/base/bin/conda"
+}
