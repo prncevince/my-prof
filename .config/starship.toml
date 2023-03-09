@@ -2,6 +2,8 @@
 
 # Don't print a new line at the start of the prompt
 add_newline = false
+# in milliseconds - 500 default - pyenv timesout quickly
+# command_timeout = 10000
 
 [conda]
 style = "dimmed green"

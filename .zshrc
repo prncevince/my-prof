@@ -28,10 +28,14 @@ export PATH="$PATH:$HOME/.local/bin"
 # pynev-virtualenv is the virutalenv plugin for pyenv 
 # below is ran in non-interactive sessions
 # eval "$(pyenv init --path)"
-eval "$(pyenv init - --no-rehash)"
-eval "$(pyenv virtualenv-init - --no-rehash)"
+# best to uncomment the 3 below when wanting to use pyenv
+# HOWEVER - pyenv is slow on different systems - so requirements.txt files in project
+#   root directory may severerly slow down shell 
+#   point: conda/mamba is FASTER - pipenv can maybe be configured to use conda/mamba instead!
+# eval "$(pyenv init - --no-rehash)"
+# eval "$(pyenv virtualenv-init - --no-rehash)"
 # pyenv - handles configuring pyenv - from the plugin magic :)
-export PYENV_ROOT="$(pyenv root)"
+# export PYENV_ROOT="$(pyenv root)"
 # Quarto
 export PATH="$HOME/.quarto/shims:$PATH"
 # R / RStudio
