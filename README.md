@@ -58,14 +58,20 @@ Note, Anaconda is monolithic, so it's probably best to create a new environment 
 Make sure to activate the environment that you install JupyterLab into when you use it to run other virtual environments. 
 
 In addition, the JupyterLab plotly extension *must* be installed into the same environment as JupyterLab, so a plotly install can [take care of this](https://plotly.com/python/troubleshooting/#jupyterlab-problems). 
+The same goes for the JupyterLab leaflet extension. However, this does not seem to cover all the dependency versions for say [geemap](https://book.geemap.org/chapters/01_introduction.html#installing-geemap), so it's better to install geemap with jupyter into it's own environment and use that version of `jupyter`. This can be done by installing [pygis](https://github.com/giswqs/pygis).
+
+```
+mamba install -n pygis pygis
+```
 
 If you'd like Math TeX docstring rendered, you can [install the `docrepr` package](https://blog.jupyter.org/inspector-jupyterlab-404cce3e1df6) within the activated environment & cofigure it for interactive sessions. Your mileage may vary, but `SHIFT+TAB` is typically more reliant than `⌘+I` & the Contextual Pane for parsing docstring.
 
 ```
-# if you're lucky
-conda install -n base nb_conda plotly
-# a smarter move
-conda create -n juplab -c conda-forge nb_conda jupyterlab plotly 
+# just don't install anything into the base environment 
+# a smarter move - create a jupyterlab environment 
+conda create -n juplab -c conda-forge nb_conda jupyterlab plotly ipyleaflet
+# to use the python environment's kernel from myenv within your juplab environment
+conda install -n myenv ipykernel
 # to get html parsed docstring for myenv - downloads sphinx dependent utilites
 conda install -n myenv docrepr 
 ```
