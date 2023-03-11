@@ -317,7 +317,7 @@ test -r ~/.dir_colors && eval `gdircolors -b ~/.dir_colors`
 # homebrew 
 # brew update death - stops homebrew from auto updating all software (autoupdates potential break a lot of things)
 export HOMEBREW_NO_AUTO_UPDATE=1
-# perform this in private
+# perform this in private.sh - provides GitHub PAT to brew for brew search - no more git-credential-osxkeychain prompts   
 # export HOMEBREW_GITHUB_API_TOKEN
 # zsh history
 export HISTSIZE=1000000
