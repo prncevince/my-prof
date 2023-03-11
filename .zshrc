@@ -314,8 +314,11 @@ function theme() {
 test -r ~/.dir_colors && eval `gdircolors -b ~/.dir_colors`
 
 ## ENVIRONMENT VARIABLES ##
-# homebrew death - stops homebrew from auto updating all software (which potentially breaks a lot of things)
+# homebrew 
+# brew update death - stops homebrew from auto updating all software (autoupdates potential break a lot of things)
 export HOMEBREW_NO_AUTO_UPDATE=1
+# perform this in private
+# export HOMEBREW_GITHUB_API_TOKEN
 # zsh history
 export HISTSIZE=1000000
 export SAVEHIST=$HISTSIZE
