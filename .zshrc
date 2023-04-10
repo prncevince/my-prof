@@ -17,7 +17,8 @@ if [[ -n $M1 ]]; then
   alias brew-old=/usr/local/bin/brew
 fi
 # Docker
-export PATH="$HOME/.docker/bin:$PATH"
+# requires Docker Desktop > 4.18 otherwise it adds a script each time to ~/.zshrc to fix path
+export PATH="$PATH:$HOME/.docker/bin"
 # Go
 export PATH=$PATH:${GOPATH//://bin:}/bin
 # Python - Homebrew
