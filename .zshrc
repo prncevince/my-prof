@@ -250,8 +250,6 @@ alias color="eval \`gdircolors -b ~/.dir_colors\`"
 alias cp="$(brew --prefix)/bin/gcp"
 alias docker-up="open -a Docker"
 alias docker-stop="pkill -SIGHUP -f /Applications/Docker.app 'docker serve' com.docker.vpnkit com.docker.dev-envs"
-alias du="/usr/bin/du -sh -- *"
-alias duh="/usr/bin/du -sh -- * .*"
 # Show the diff between latest stash and local working tree
 alias gdst='git diff stash@{0}' # = git stash show -l
 # Show the diff between latest stash and HEAD
@@ -346,7 +344,15 @@ conda-export() {
     conda env export -n $env > ${env}.yml
   done
 }
-#
+# disk usage
+du() {
+  if [ ! -z $@ ]; then dir="$@/"; else dir=''; fi
+  /usr/bin/du -sh -- "$dir"*
+}
+duh() {
+  if [ ! -z $@ ]; then dir="$@/"; else dir=''; fi
+  /usr/bin/du -sh -- "$dir"* "$dir".*
+}
 # fzf functions - fuzzy finder 
 # fuzzy finder shortcut is '^ + R'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

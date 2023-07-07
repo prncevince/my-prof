@@ -5,7 +5,7 @@ quarto_dotfile_root() {
     criterion <- rprojroot::root_criterion(
       function(path) file.exists(file.path(path, dotfile)), paste0('has ', dotfile)
     ) \n
-    root <- rprojroot::find_root(criterion = criterion, path = '.') \n
+    root <- tryCatch(rprojroot::find_root(criterion = criterion, path = '.'), error = function(e){}) \n
     cat(root)
   "
 }
