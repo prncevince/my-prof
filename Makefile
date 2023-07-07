@@ -1,10 +1,12 @@
-.PHONY: all brew symlinks spaces-copy spaces-deploy constants
+.PHONY: all brew symlinks spaces-copy spaces-deploy constants-copy constants-deploy environs-copy environs-deploy
 
 BREWPREFIX = $(shell brew --prefix)
 brew-old = /usr/local/bin/brew
 
-DOT = .Brewfile .Brewfile.old .Renviron .Rprofile .dir_colors .fzf.zsh \
+DOT = .Brewfile .Brewfile.old .Renviron .dir_colors .fzf.zsh \
 			.tmux.conf.local .tmux.conf.local.light .vimrc .zlogout .zshrc
+DOT_environ = .Rprofile
+DOT_constant = .condarc
 ANACONDA3_ETC_JUPYTER_JUPYTERNOTEBOOKCONFIGD = jupyterlab.json nteract_on_jupyter.json
 ANACONDA3_ETC_JUPYTER_NBCONFIG = notebook.json 
 ANACONDA3_ETC_JUPYTER_NBCONFIG_NOTEBOOKD = ipyaggrid.json plotlywidget.json vega.json widgetsnbextension.json
@@ -26,6 +28,8 @@ VIM = coc-settings.json
 VIM_PLUGGED_VIM-AIRLINE-THEMES_AUTOLOAD_AIRLINE_THEMES = vince.vim
 
 DOT_FILES = $(DOT)
+DOT_FILES_environ = $(DOT_environ)
+DOT_FILES_constant = $(DOT_constant)
 ANACONDA3_ETC_JUPYTER_JUPYTERNOTEBOOKCONFIGD_FILES = $(addprefix anaconda3/etc/jupyter/jupyter_notebook_config.d/,$(ANACONDA3_ETC_JUPYTER_JUPYTERNOTEBOOKCONFIGD))
 ANACONDA3_ETC_JUPYTER_NBCONFIG_FILES = $(addprefix anaconda3/etc/jupyter/nbconfig/,$(ANACONDA3_ETC_JUPYTER_NBCONFIG))
 ANACONDA3_ETC_JUPYTER_NBCONFIG_NOTEBOOKD_FILES = $(addprefix anaconda3/etc/jupyter/nbconfig/notebook.d/,$(ANACONDA3_ETC_JUPYTER_NBCONFIG_NOTEBOOKD))
@@ -54,7 +58,11 @@ ALL_REPO = $(DOT_FILES) \
 	$(QUARTO_SHIMS_FILES) $(R_FILES) $(R_SHIMS_FILES) $(R_RSTUDIO_THEMES_FILES) \
 	$(TMUX_FILES) $(VIM_FILES) $(VIM_PLUGGED_VIM-AIRLINE-THEMES_AUTOLOAD_AIRLINE_THEMES_FILES)
 
-ALL_SPACES = $(LIBRARY_APPLICATIONSUPPORT_CODE_USER_FILES)
+ALL_SPACE = $(LIBRARY_APPLICATIONSUPPORT_CODE_USER_FILES)
+
+ALL_CONSTANT = $(DOT_FILES_constant)
+
+ALL_ENVIRON = $(DOT_FILES_environ)
 
 ALL_SERVER = $(addprefix ~/,$(ALL_REPO))
 
@@ -95,12 +103,25 @@ symlinks:
 	ln -fs .R/shims/rstudio.sh .R/shims/rstudio
 	ln -fs .quarto/shims/quarto.sh .quarto/shims/quarto
 
-constants:
-	cp ~/.condarc ./
 
+# constantly periodically updated files
+constants-copy:
+	$(BREWPREFIX)/bin/gcp -pu ~/$(ALL_CONSTANT) $(ALL_CONSTANT) 
+
+constants-deploy:
+	$(BREWPREFIX)/bin/gcp -pu $(ALL_CONSTANT) ~/$(ALL_CONSTANT)
+
+# constantly periodically updated files
+environs-copy:
+	$(BREWPREFIX)/bin/gcp -pu ~/$(ALL_ENVIRON) $(ALL_ENVIRON) 
+
+environs-deploy:
+	$(BREWPREFIX)/bin/gcp -pu $(ALL_ENVIRON) ~/$(ALL_ENVIRON)
+
+# files with spaces in file paths
 spaces-copy:
-	$(BREWPREFIX)/bin/gcp -pu ~/$(ALL_SPACES) $(ALL_SPACES) 
+	$(BREWPREFIX)/bin/gcp -pu ~/$(ALL_SPACE) $(ALL_SPACE) 
 
 spaces-deploy:
-	$(BREWPREFIX)/bin/gcp -pu $(ALL_SPACES) ~/$(ALL_SPACES)
+	$(BREWPREFIX)/bin/gcp -pu $(ALL_SPACE) ~/$(ALL_SPACE)
 
