@@ -4,6 +4,13 @@
 add_newline = false
 # in milliseconds - 500 default - pyenv timesout quickly
 # command_timeout = 10000
+format = """
+$all\
+$fill\
+$time\
+$line_break\
+$character
+"""
 
 [conda]
 style = "dimmed green"
@@ -11,3 +18,12 @@ ignore_base = false
 
 [nodejs]
 symbol = "🌱 "
+
+[fill]
+symbol = " "
+
+[time]
+disabled = false
+style = "bold bright-black"
+format = "[$time]($style)"
+
