@@ -32,6 +32,12 @@ Some other projects that handle this:
 
 Regular [Mac binary CRAN `.pkg` installs](https://cran.r-project.org/bin/macosx/). Simple and effective. Not as complex as aforementioned projects.
 
+When running the macOS `.pkg` installer, always run this first to keep the old install:
+
+```bash
+sudo pkgutil --forget org.R-project.arm64.R.fw.pkg
+```
+
 ## Windows 
 
 Windows Unix Terminal emulators setups with R & RStudio installs to the `%localappdata%` directory. This achieves a nice per user setup. 
