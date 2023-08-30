@@ -111,7 +111,7 @@ constants-copy:
 constants-deploy:
 	$(BREWPREFIX)/bin/gcp -pu $(ALL_CONSTANT) ~/$(ALL_CONSTANT)
 
-# constantly periodically updated files
+# machine/environment specific files 
 environs-copy:
 	$(BREWPREFIX)/bin/gcp -pu ~/$(ALL_ENVIRON) $(ALL_ENVIRON) 
 
