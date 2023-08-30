@@ -19,3 +19,12 @@ CFLAGS=-g -O3 -Wall -pedantic -std=gnu99 -mtune=native -pipe
 CXXFLAGS=-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe
 LDFLAGS=-L$(HOMEBREW_LOC)/opt/gettext/lib -L$(LLVM_LOC)/lib -Wl,-rpath,$(LLVM_LOC)/lib
 CPPFLAGS=-I$(HOMEBREW_LOC)/opt/gettext/include -I$(LLVM_LOC)/include
+
+# gfortran issues
+#LDFLAGS += -L$(HOMEBREW_LOC)/opt/gfortran/lib
+FLIBS   = -L$(HOMEBREW_LOC)/opt/gfortran/lib
+F77     = $(HOMEBREW_LOC)/bin/gfortran
+FC      = $(HOMEBREW_LOC)/bin/gfortran
+CFLAGS   += -I$(HOMEBREW_LOC)/include
+CPPFLAGS += -I$(HOMEBREW_LOC)/include
+CXXFLAGS += -I$(HOMEBREW_LOC)/include
