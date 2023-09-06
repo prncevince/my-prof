@@ -9,7 +9,8 @@ quarto_dotfile_root() {
     cat(root)
   "
 }
-QUARTO_DOTFILE_ROOT=$(quarto_dotfile_root)
+# gathers the last line of output from R
+QUARTO_DOTFILE_ROOT=$(echo "$(quarto_dotfile_root)" | /usr/bin/tail -n1)
 QUARTO_DOTFILE_PATH=$QUARTO_DOTFILE_ROOT/.quarto-version
 if [ -f "$QUARTO_DOTFILE_PATH" ]; then
   QUARTOPATH=$QUARTO_DOTFILE_ROOT/.quarto-cli/
