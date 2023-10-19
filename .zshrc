@@ -249,7 +249,7 @@ alias cocconf="$EDITOR ~/.config/nvim/coc-settings.json"
 alias color="eval \`gdircolors -b ~/.dir_colors\`"
 alias cp="$(brew --prefix)/bin/gcp"
 alias docker-up="open -a Docker"
-alias docker-stop="pkill -SIGHUP -f /Applications/Docker.app 'docker serve' com.docker.vpnkit com.docker.dev-envs"
+alias docker-stop="pkill -SIGHUP -f /Applications/Docker.app 'docker serve' com.docker.vpnkit com.docker.dev-envs com.docker.vmnetd"
 # Show the diff between latest stash and local working tree
 alias gdst='git diff stash@{0}' # = git stash show -l
 # Show the diff between latest stash and HEAD
@@ -273,7 +273,7 @@ alias ta="tmux attach"
 alias tmuxconf="$EDITOR ~/.tmux.conf.local"
 alias tn="tmux -L s2 -f /dev/null new-session -s test"
 alias tk="tmux -L s2 kill-server"
-alias tree="$(brew --prefix)/bin/tree --dirsfirst --du -ahlpCD -I '\.git|\.Rproj\.user|node_modules|renv|\.quarto|\.quarto-cli'"
+alias tree="$(brew --prefix)/bin/tree --dirsfirst --du -ahlpCD -I '\.git|\.ipynb_checkpoints|\.Rproj\.user|node_modules|renv|\.quarto|\.quarto-cli'"
 alias nvimconf="$EDITOR ~/.config/nvim/init.vim"
 alias vimconf="$EDITOR ~/.vimrc"
 alias v="$EDITOR ."
