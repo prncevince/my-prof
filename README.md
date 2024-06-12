@@ -21,6 +21,10 @@ Can help you mirror between multiple MacOS machines.
 - [vim-plug](https://github.com/junegunn/vim-plug#vim)
 - [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm#installation)
 - [Homebrew](https://docs.brew.sh/Installation)
+- [Firefox](https://www.mozilla.org/firefox/download/thanks/)
+  - install [Tree Style Tab](https://addons.mozilla.org/en-US/firefox/addon/tree-style-tab/), [Bookmark Manager & Viewer](https://addons.mozilla.org/en-US/firefox/addon/bookmarks-manager-and-viewer/), [Adblock Plus - free ad blocker](https://addons.mozilla.org/en-US/firefox/addon/adblock-plus/), [Multi-touch Zoom](https://addons.mozilla.org/en-US/firefox/addon/multi-touch-zoom/)
+  - copy [userChrome.css](userChrome.css) to `~/Library/Application Support/Firefox/Profiles/*.default/chrome/`
+    - go to `about:config` in address bar, & make sure that `toolkit.legacyUserProfileCustomizations.stylesheets` is set to `true`
 
 ## 'Auto' Installs
 

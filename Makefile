@@ -1,4 +1,4 @@
-.PHONY: all brew symlinks spaces-copy spaces-deploy constants-copy constants-deploy environs-copy environs-deploy
+.PHONY: all brew symlinks spaces-copy spaces-deploy continuous-copy continuous-deploy environs-copy environs-deploy
 
 BREWPREFIX = $(shell brew --prefix)
 brew-old = /usr/local/bin/brew
@@ -105,10 +105,10 @@ symlinks:
 
 
 # constantly periodically updated files
-constants-copy:
+continuous-copy:
 	$(BREWPREFIX)/bin/gcp -pu ~/$(ALL_CONSTANT) $(ALL_CONSTANT) 
 
-constants-deploy:
+continuous-deploy:
 	$(BREWPREFIX)/bin/gcp -pu $(ALL_CONSTANT) ~/$(ALL_CONSTANT)
 
 # machine/environment specific files 

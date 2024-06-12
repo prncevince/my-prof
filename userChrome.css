@@ -1,0 +1,20 @@
+/* hides the native tabs */
+#TabsToolbar {
+  visibility: collapse;
+}
+
+/* hides address bar in fullscreen mode */
+#navigator-toolbox[inFullscreen] {
+  position: relative;
+  z-index: 1;
+  height: 15px;
+  margin-bottom: -15px;
+  opacity: 0;
+  overflow: hidden;
+}
+#navigator-toolbox[inFullscreen]:hover {
+  height: auto;
+  margin-bottom: 0px;
+  opacity: 1;
+  overflow: visible;
+}
