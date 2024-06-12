@@ -844,31 +844,12 @@
             "args": {}
         },
         {
-            "command": "notebook:run-cell-and-select-next",
-            "keys": [
-                "Shift Enter"
-            ],
-            "macKeys": [
-                "Ctrl Enter"
-            ],
-            "selector": ".jp-Notebook.jp-mod-editMode",
-            "args": {}
-        },
-        {
-            "command": "notebook:select-all",
-            "keys": [
-                "Accel A"
-            ],
-            "macKeys": [
-                "Ctrl Enter"
-            ],
-            "selector": ".jp-Notebook:focus",
-            "args": {}
-        },
-        {
             "command": "notebook:split-cell-at-cursor",
             "keys": [
                 "Ctrl Shift -"
+            ],
+            "macKeys": [
+                "Ctrl Enter"
             ],
             "selector": ".jp-Notebook.jp-mod-editMode",
             "args": {}
@@ -877,6 +858,9 @@
             "command": "notebook:toggle-all-cell-line-numbers",
             "keys": [
                 "Shift L"
+            ],
+            "macKeys": [
+                "Ctrl Enter"
             ],
             "selector": ".jp-Notebook:focus",
             "args": {}
@@ -1071,6 +1055,22 @@
                 "Shift L"
             ],
             "selector": ".jp-Notebook.jp-mod-commandMode",
+            "args": {}
+        },
+        {
+            "command": "notebook:run-cell-and-select-next",
+            "keys": [
+                "Shift Enter"
+            ],
+            "selector": ".jp-Notebook.jp-mod-editMode",
+            "args": {}
+        },
+        {
+            "command": "notebook:select-all",
+            "keys": [
+                "Accel A"
+            ],
+            "selector": ".jp-Notebook:focus",
             "args": {}
         }
     ]
